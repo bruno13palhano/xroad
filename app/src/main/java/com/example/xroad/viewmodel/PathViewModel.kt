@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RoadViewModel @Inject constructor(
+class PathViewModel @Inject constructor(
     @SimplePathRep private val roadRepository: PathRepository
 ) : ViewModel() {
     private var _allPaths = MutableStateFlow<List<Path>>(emptyList())

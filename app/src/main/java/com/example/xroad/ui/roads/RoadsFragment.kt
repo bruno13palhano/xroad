@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RoadsFragment : Fragment() {
-    private val viewModel: RoadsViewModel by viewModels()
+    private val viewModel: PathsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class RoadsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_roads, container, false)
         val pathRecyclerView = view.findViewById<RecyclerView>(R.id.path_recycler_view)
 
-        val adapter = RoadsAdapter {
+        val adapter = PathsAdapter {
             findNavController().navigate(
                 RoadsFragmentDirections.actionRoadsToToad(it))
         }

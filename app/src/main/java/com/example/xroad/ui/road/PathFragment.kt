@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.xroad.R
 import com.google.android.material.appbar.MaterialToolbar
 
-class RoadFragment : Fragment() {
+class PathFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,7 +18,7 @@ class RoadFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_road, container, false)
 
-        val roadId = RoadFragmentArgs.fromBundle(requireArguments()).roadId
+        val roadId = PathFragmentArgs.fromBundle(requireArguments()).roadId
 
         val productId = view.findViewById<TextView>(R.id.road_id)
         productId.text = "road id: $roadId"

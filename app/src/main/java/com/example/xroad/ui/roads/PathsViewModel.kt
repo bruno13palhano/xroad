@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class RoadsViewModel @Inject constructor(
+class PathsViewModel @Inject constructor(
     @SimplePathRep private val pathRepository: PathRepository
 ): ViewModel() {
 

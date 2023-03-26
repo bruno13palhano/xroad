@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/roadFragment"
-        android:name="com.example.xroad.ui.road.RoadFragment"
+        android:name="com.example.xroad.ui.road.PathFragment"
         android:label="RoadFragment"
         tools:layout="@layout/fragment_road">
 

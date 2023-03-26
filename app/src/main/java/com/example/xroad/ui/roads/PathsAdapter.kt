@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.model.model.Path
 import com.example.xroad.R
 
-class RoadsAdapter(
+class PathsAdapter(
     private val onItemClick: (pathId: Long) -> Unit
-) : ListAdapter<Path, RoadsAdapter.RoadItemViewHolder>(RoadDiffCallback()) {
+) : ListAdapter<Path, PathsAdapter.RoadItemViewHolder>(RoadDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoadItemViewHolder {
         val view = LayoutInflater.from(parent.context)

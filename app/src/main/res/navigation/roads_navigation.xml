@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roads_navigation"
+    app:startDestination="@id/roadsFragment">
+
+    <fragment
+        android:id="@+id/roadsFragment"
+        android:name="com.example.xroad.ui.roads.RoadsFragment"
+        android:label="RoadsFragment"
+        tools:layout="@layout/fragment_roads">
+
+        <action
+            android:id="@+id/action_roads_to_toad"
+            app:destination="@id/roadFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/roadFragment"
+        android:name="com.example.xroad.ui.road.RoadFragment"
+        android:label="RoadFragment"
+        tools:layout="@layout/fragment_road">
+
+        <argument
+            android:name="roadId"
+            app:argType="long" />
+    </fragment>
+</navigation>

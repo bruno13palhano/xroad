@@ -24,7 +24,7 @@ class RoadsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_roads, container, false)
+        val view = inflater.inflate(R.layout.fragment_paths, container, false)
         val pathRecyclerView = view.findViewById<RecyclerView>(R.id.path_recycler_view)
 
         val adapter = PathsAdapter {

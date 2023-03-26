@@ -18,9 +18,9 @@
 
     <fragment
         android:id="@+id/roadFragment"
-        android:name="com.example.xroad.ui.road.PathFragment"
+        android:name="com.example.xroad.ui.path.PathFragment"
         android:label="RoadFragment"
-        tools:layout="@layout/fragment_road">
+        tools:layout="@layout/fragment_path">
 
         <argument
             android:name="roadId"

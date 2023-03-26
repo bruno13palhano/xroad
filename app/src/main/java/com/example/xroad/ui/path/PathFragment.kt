@@ -1,4 +1,4 @@
-package com.example.xroad.ui.road
+package com.example.xroad.ui.path
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,7 +16,7 @@ class PathFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_road, container, false)
+        val view = inflater.inflate(R.layout.fragment_path, container, false)
 
         val roadId = PathFragmentArgs.fromBundle(requireArguments()).roadId
 

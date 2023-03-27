@@ -13,7 +13,15 @@
 
         <action
             android:id="@+id/action_home_to_road"
-            app:destination="@id/roadFragment"/>
+            app:destination="@id/roadFragment" />
+
+        <action
+            android:id="@+id/action_home_to_newPath"
+            app:destination="@id/new_path_navigation"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false"
+            app:popUpToSaveState="true"
+            app:restoreState="true" />
     </fragment>
 
     <fragment

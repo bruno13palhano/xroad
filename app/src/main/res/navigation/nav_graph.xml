@@ -7,5 +7,5 @@
 
     <include app:graph="@navigation/home_navigation" />
     <include app:graph="@navigation/paths_navigation" />
-
+    <include app:graph="@navigation/new_path_navigation" />
 </navigation>

@@ -17,4 +17,11 @@
 <!--  Path  -->
     <string name="title_label">Title</string>
     <string name="topic_title">Topic</string>
+
+<!--  Difficulty labels  -->
+    <string name="very_easy_label">Very Easy</string>
+    <string name="easy_label">Easy</string>
+    <string name="normal_label">Normal</string>
+    <string name="hard_label">Hard</string>
+    <string name="very_hard_label">Very Hard</string>
 </resources>

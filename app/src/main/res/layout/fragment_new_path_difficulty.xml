@@ -25,7 +25,48 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/difficulty_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/very_easy_difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/very_easy_label" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/easy_difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/easy_label" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/normal_difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/normal_label"
+            android:checked="true"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/hard_difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/hard_label" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/very_hard_difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/very_hard_label" />
+    </RadioGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

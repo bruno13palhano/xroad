@@ -21,6 +21,7 @@ class NewPathDateFragment : Fragment() {
         val view = binding.root
 
         binding.button.setOnClickListener {
+            println(binding.calendarView.date)
             findNavController().navigate(
                 NewPathDateFragmentDirections.actionDateToDifficulty())
         }

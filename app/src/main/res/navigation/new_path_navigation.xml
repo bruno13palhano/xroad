@@ -34,7 +34,18 @@
         tools:layout="@layout/fragment_new_path_duration">
 
         <action
-            android:id="@+id/action_duration_to_difficulty"
+            android:id="@+id/action_duration_to_date"
+            app:destination="@id/newPathDateFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathDateFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathDateFragment"
+        android:label="Date"
+        tools:layout="@layout/fragment_new_path_date">
+
+        <action
+            android:id="@+id/action_date_to_difficulty"
             app:destination="@id/newPathDifficultyFragment" />
     </fragment>
 

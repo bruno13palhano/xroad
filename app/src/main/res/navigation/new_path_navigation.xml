@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_path_navigation"
+    app:startDestination="@id/newPathTitleAndTopicFragment">
+
+    <fragment
+        android:id="@+id/newPathTitleAndTopicFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathTitleAndTopicFragment"
+        android:label="TitleAndTopic"
+        tools:layout="@layout/fragment_new_path_title_and_topic">
+
+        <action
+            android:id="@+id/action_titleAndTopic_to_description"
+            app:destination="@id/newPathDescriptionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathDescriptionFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathDescriptionFragment"
+        android:label="Description"
+        tools:layout="@layout/fragment_new_path_description">
+
+        <action
+            android:id="@+id/action_description_to_duration"
+            app:destination="@id/newPathDurationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathDurationFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathDurationFragment"
+        android:label="Duration"
+        tools:layout="@layout/fragment_new_path_duration">
+
+        <action
+            android:id="@+id/action_duration_to_difficulty"
+            app:destination="@id/newPathDifficultyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathDifficultyFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathDifficultyFragment"
+        android:label="Difficult"
+        tools:layout="@layout/fragment_new_path_difficulty">
+
+        <action
+            android:id="@+id/action_difficulty_to_titleAndTopic"
+            app:destination="@id/newPathTitleAndTopicFragment"
+            app:popUpTo="@id/newPathTitleAndTopicFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

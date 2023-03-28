@@ -24,4 +24,10 @@ internal class SimplePathRepository @Inject constructor(
             }
         }
     }
+
+    override fun getPathById(id: Long): Flow<Path> {
+        return pathDao.getPathById(id).map {
+            it.asPath()
+        }
+    }
 }

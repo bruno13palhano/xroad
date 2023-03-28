@@ -14,4 +14,7 @@ internal interface PathDao {
 
     @Query("SELECT * FROM path_table")
     fun getAll(): Flow<List<PathData>>
+
+    @Query("SELECT * FROM path_table WHERE id = :id")
+    fun getPathById(id: Long): Flow<PathData>
 }

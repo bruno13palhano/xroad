@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -65,28 +66,13 @@ class NewPathDifficultyFragment : Fragment() {
             launch {
                 viewModel.difficulty.collect {
                     difficulty = it
+                    checkDifficultyRadioButton(it)
                 }
             }
         }
 
         binding.difficultyGroup.setOnCheckedChangeListener { radioGroup, i ->
-            when (radioGroup.checkedRadioButtonId) {
-                binding.veryEasyDifficulty.id -> {
-                    viewModel.setDifficulty(Difficulty.VERY_EASY)
-                }
-                binding.easyDifficulty.id -> {
-                    viewModel.setDifficulty(Difficulty.EASY)
-                }
-                binding.normalDifficulty.id -> {
-                    viewModel.setDifficulty(Difficulty.NORMAL)
-                }
-                binding.hardDifficulty.id -> {
-                    viewModel.setDifficulty(Difficulty.HARD)
-                }
-                binding.veryHardDifficulty.id -> {
-                    viewModel.setDifficulty(Difficulty.VERY_HARD)
-                }
-            }
+           setDifficulty(radioGroup)
         }
 
         binding.button.setOnClickListener {
@@ -102,6 +88,7 @@ class NewPathDifficultyFragment : Fragment() {
                         difficulty = difficulty
                     )
                 )
+                viewModel.restorePathValues()
             }
 
             findNavController().navigate(
@@ -118,6 +105,46 @@ class NewPathDifficultyFragment : Fragment() {
 
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
+        }
+    }
+
+    private fun checkDifficultyRadioButton(difficulty: Difficulty) {
+        when (difficulty) {
+            Difficulty.VERY_EASY -> {
+                binding.veryEasyDifficulty.isChecked = true
+            }
+            Difficulty.EASY -> {
+                binding.easyDifficulty.isChecked = true
+            }
+            Difficulty.NORMAL -> {
+                binding.normalDifficulty.isChecked = true
+            }
+            Difficulty.HARD -> {
+                binding.hardDifficulty.isChecked = true
+            }
+            Difficulty.VERY_HARD -> {
+                binding.veryHardDifficulty.isChecked = true
+            }
+        }
+    }
+
+    private fun setDifficulty(radioGroup: RadioGroup) {
+        when (radioGroup.checkedRadioButtonId) {
+            binding.veryEasyDifficulty.id -> {
+                viewModel.setDifficulty(Difficulty.VERY_EASY)
+            }
+            binding.easyDifficulty.id -> {
+                viewModel.setDifficulty(Difficulty.EASY)
+            }
+            binding.normalDifficulty.id -> {
+                viewModel.setDifficulty(Difficulty.NORMAL)
+            }
+            binding.hardDifficulty.id -> {
+                viewModel.setDifficulty(Difficulty.HARD)
+            }
+            binding.veryHardDifficulty.id -> {
+                viewModel.setDifficulty(Difficulty.VERY_HARD)
+            }
         }
     }
 }

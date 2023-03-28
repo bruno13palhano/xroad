@@ -1,6 +1,7 @@
 package com.example.xroad.ui.newpath
 
 import android.app.TimePickerDialog
+import android.icu.text.DateFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,8 +32,9 @@ class NewPathDurationFragment : Fragment() {
         val hour = currentTime.get(Calendar.HOUR_OF_DAY)
         val minute = currentTime.get(Calendar.MINUTE)
         val timePicker = TimePickerDialog(requireContext(), { view, hourOfDay, minute ->
-            binding.duration.text = "$hourOfDay:$minute"
-            viewModel.setDurationValue(convertTimeToLong(hourOfDay, minute))
+            val durationInMillis = convertTimeToLong(hourOfDay, minute)
+            binding.duration.text = durationInMillisecondsToString(durationInMillis)
+            viewModel.setDurationValue(durationInMillis)
         }, hour, minute, true)
 
         binding.duration.setOnClickListener {
@@ -63,5 +65,9 @@ class NewPathDurationFragment : Fragment() {
         calendar.set(Calendar.MINUTE, minute)
 
         return calendar.timeInMillis
+    }
+
+    private fun durationInMillisecondsToString(duration: Long): String {
+        return DateFormat.getPatternInstance(DateFormat.HOUR24_MINUTE).format(duration)
     }
 }

@@ -30,4 +30,8 @@ internal class SimplePathRepository @Inject constructor(
             it.asPath()
         }
     }
+
+    override suspend fun updatePath(path: Path) {
+        pathDao.updatePath(path.asPathData())
+    }
 }

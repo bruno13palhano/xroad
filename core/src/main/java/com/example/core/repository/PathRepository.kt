@@ -7,4 +7,5 @@ interface PathRepository {
     suspend fun insert(path: Path)
     fun getAll(): Flow<List<Path>>
     fun getPathById(id: Long): Flow<Path>
+    suspend fun updatePath(path: Path)
 }

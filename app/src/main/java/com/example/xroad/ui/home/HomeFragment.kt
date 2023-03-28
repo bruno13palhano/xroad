@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         val button = view.findViewById<Button>(R.id.button)
         button.setOnClickListener {
             findNavController().navigate(
-                HomeFragmentDirections.actionHomeToRoad(1L)
+                HomeFragmentDirections.actionHomeToNewPath()
             )
         }
 
@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbar)
         toolbar.setNavigationIcon(R.drawable.baseline_menu_24)
-        toolbar.title = "Home"
+        toolbar.title = getString(R.string.app_name)
 
         toolbar.setNavigationOnClickListener {
             drawer.open()

@@ -6,11 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathTitleAndTopicBinding
 import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NewPathTitleAndTopicFragment : Fragment() {
@@ -25,6 +29,21 @@ class NewPathTitleAndTopicFragment : Fragment() {
         _binding = FragmentNewPathTitleAndTopicBinding
             .inflate(inflater, container, false)
         val view = binding.root
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.title.collect {
+                        binding.title.setText(it)
+                    }
+                }
+                launch {
+                    viewModel.topic.collect {
+                        binding.topic.setText(it)
+                    }
+                }
+            }
+        }
 
         binding.button.setOnClickListener {
             val title = binding.title.text.toString()

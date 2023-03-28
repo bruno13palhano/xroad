@@ -16,67 +16,105 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/path_title"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/path_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/title_label"
-        android:textSize="16sp"
-        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <TextView
-        android:id="@+id/path_topic"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/path_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/path_topic_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/topic_label"
-        android:padding="8dp"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/path_title" />
+        app:layout_constraintTop_toBottomOf="@+id/path_title_layout">
 
-    <TextView
-        android:id="@+id/path_duration"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/path_topic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/path_duration_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/duration_label"
-        android:padding="8dp"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/path_topic" />
+        app:layout_constraintTop_toBottomOf="@+id/path_topic_layout">
 
-    <TextView
-        android:id="@+id/path_date"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/path_duration"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/path_date_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/date_label"
-        android:padding="8dp"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/path_duration" />
+        app:layout_constraintTop_toBottomOf="@+id/path_duration_layout">
 
-    <TextView
-        android:id="@+id/path_description"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/path_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/path_description_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:hint="@string/description_label"
-        android:padding="8dp"
-        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/done_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/path_date" />
+        app:layout_constraintTop_toBottomOf="@+id/path_date_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/path_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minLines="2"
+            android:gravity="top" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/done_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/done_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

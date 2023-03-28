@@ -35,11 +35,11 @@ class PathFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getPath(roadId).collect {
-                    binding.pathTitle.text = it.title
-                    binding.pathTopic.text = it.topic
-                    binding.pathDescription.text = it.description
-                    binding.pathDuration.text = it.durationInMilliseconds.toString()
-                    binding.pathDate.text = it.dateInMilliseconds.toString()
+                    binding.pathTitle.setText(it.title)
+                    binding.pathTopic.setText(it.topic)
+                    binding.pathDescription.setText(it.description)
+                    binding.pathDuration.setText(it.durationInMilliseconds.toString())
+                    binding.pathDate.setText(it.dateInMilliseconds.toString())
                 }
             }
         }

@@ -29,13 +29,13 @@ class NewPathDurationFragment : Fragment() {
         val view = binding.root
 
         val currentTime = Calendar.getInstance()
-        val hour = currentTime.get(Calendar.HOUR_OF_DAY)
-        val minute = currentTime.get(Calendar.MINUTE)
-        val timePicker = TimePickerDialog(requireContext(), { view, hourOfDay, minute ->
+        val currentHour = currentTime.get(Calendar.HOUR_OF_DAY)
+        val currentMinute = currentTime.get(Calendar.MINUTE)
+        val timePicker = TimePickerDialog(requireContext(), { _, hourOfDay, minute ->
             val durationInMillis = convertTimeToLong(hourOfDay, minute)
             binding.duration.text = durationInMillisecondsToString(durationInMillis)
             viewModel.setDurationValue(durationInMillis)
-        }, hour, minute, true)
+        }, currentHour, currentMinute, true)
 
         binding.duration.setOnClickListener {
             timePicker.show()

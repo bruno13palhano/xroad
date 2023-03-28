@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,10 +26,12 @@ class NewPathViewModel @Inject constructor(
     private var _description = MutableStateFlow("")
     val description = _description.asStateFlow()
 
-    private var _duration = MutableStateFlow(0L)
+    private val currentDate = Calendar.getInstance()
+
+    private var _duration = MutableStateFlow(currentDate.timeInMillis)
     val duration = _duration.asStateFlow()
 
-    private var _date = MutableStateFlow(0L)
+    private var _date = MutableStateFlow(currentDate.timeInMillis)
     val date = _date.asStateFlow()
 
     private var _difficulty = MutableStateFlow(Difficulty.NORMAL)

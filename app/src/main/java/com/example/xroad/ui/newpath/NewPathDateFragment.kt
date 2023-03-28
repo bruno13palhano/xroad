@@ -5,13 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathDateBinding
+import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewPathDateFragment : Fragment() {
     private var _binding: FragmentNewPathDateBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: NewPathViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,7 +26,9 @@ class NewPathDateFragment : Fragment() {
         val view = binding.root
 
         binding.button.setOnClickListener {
-            println(binding.calendarView.date)
+            val date = binding.calendarView.date
+            viewModel.setDateValue(date)
+
             findNavController().navigate(
                 NewPathDateFragmentDirections.actionDateToDifficulty())
         }

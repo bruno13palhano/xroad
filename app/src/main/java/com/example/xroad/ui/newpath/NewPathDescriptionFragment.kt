@@ -5,13 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathDescriptionBinding
+import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewPathDescriptionFragment : Fragment() {
     private var _binding: FragmentNewPathDescriptionBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: NewPathViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +27,9 @@ class NewPathDescriptionFragment : Fragment() {
         val view = binding.root
 
         binding.button.setOnClickListener {
+            val description = binding.description.text.toString()
+            viewModel.setDescription(description)
+
             findNavController().navigate(
                 NewPathDescriptionFragmentDirections.actionDescriptionToDuration())
         }

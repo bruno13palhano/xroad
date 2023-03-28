@@ -66,4 +66,13 @@ class NewPathViewModel @Inject constructor(
     fun setDifficulty(difficulty: Difficulty) {
         _difficulty.value = difficulty
     }
+
+    fun restorePathValues() {
+        _title.value = ""
+        _topic.value = ""
+        _description.value = ""
+        _duration.value = currentDate.timeInMillis
+        _date.value = currentDate.timeInMillis
+        _difficulty.value = Difficulty.NORMAL
+    }
 }

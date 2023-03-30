@@ -6,6 +6,6 @@
     <item
         android:id="@+id/more_options"
         android:icon="@drawable/baseline_more_vert_24"
-        android:title="More options"
+        android:title="@string/options_label"
         app:showAsAction="always" />
 </menu>

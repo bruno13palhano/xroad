@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.newpath.NewPathTitleAndTopicFragment">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/title_layout"
         android:layout_width="match_parent"

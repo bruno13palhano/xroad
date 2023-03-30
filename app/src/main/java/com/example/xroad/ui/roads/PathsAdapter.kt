@@ -2,22 +2,20 @@ package com.example.xroad.ui.roads
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.model.model.Path
-import com.example.xroad.R
+import com.example.xroad.databinding.CardPathBinding
 
 class PathsAdapter(
     private val onItemClick: (pathId: Long) -> Unit
 ) : ListAdapter<Path, PathsAdapter.RoadItemViewHolder>(RoadDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoadItemViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_path, parent, false) as CardView
-        return RoadItemViewHolder(view, onItemClick)
+        val binding = CardPathBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
+        return RoadItemViewHolder(binding, onItemClick)
     }
 
     override fun onBindViewHolder(holder: RoadItemViewHolder, position: Int) {
@@ -25,15 +23,13 @@ class PathsAdapter(
     }
 
     class RoadItemViewHolder(
-        val rootView: CardView,
+        private val binding: CardPathBinding,
         val onClick: (pathId: Long) -> Unit
-    ) : RecyclerView.ViewHolder(rootView) {
-        private val pathTitle: TextView = rootView.findViewById(R.id.path_title)
-
+    ) : RecyclerView.ViewHolder(binding.root) {
         var currentPath: Path? = null
 
         init {
-            rootView.setOnClickListener {
+            binding.root.setOnClickListener {
                 currentPath?.let {
                     onClick(it.id)
                 }
@@ -42,7 +38,7 @@ class PathsAdapter(
 
         fun bind(path: Path) {
             currentPath = path
-            pathTitle.text = path.title
+            binding.pathTitle.text = path.title
         }
     }
 

@@ -10,27 +10,29 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.xroad.R
+import com.example.xroad.databinding.FragmentPathsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PathsFragment : Fragment() {
+    private var _binding: FragmentPathsBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: PathsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_paths, container, false)
-        val pathRecyclerView = view.findViewById<RecyclerView>(R.id.path_recycler_view)
+    ): View {
+        _binding = FragmentPathsBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         val adapter = PathsAdapter {
             findNavController().navigate(
                 PathsFragmentDirections.actionPathsToPath(it))
         }
-        pathRecyclerView.adapter = adapter
+        binding.pathRecyclerView.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

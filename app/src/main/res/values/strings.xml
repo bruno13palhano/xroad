@@ -27,4 +27,8 @@
     <string name="normal_label">Normal</string>
     <string name="hard_label">Hard</string>
     <string name="very_hard_label">Very Hard</string>
+
+<!--  Menu  -->
+    <string name="options_label">Options</string>
+    <string name="restore_values_label">Restore values</string>
 </resources>

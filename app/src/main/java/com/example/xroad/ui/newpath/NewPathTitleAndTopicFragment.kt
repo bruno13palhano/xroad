@@ -45,7 +45,11 @@ class NewPathTitleAndTopicFragment : Fragment() {
             }
         }
 
-        binding.button.setOnClickListener {
+        binding.previousButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding.nextButton.setOnClickListener {
             val title = binding.title.text.toString()
             val topic = binding.topic.text.toString()
             viewModel.setTitleValue(title)

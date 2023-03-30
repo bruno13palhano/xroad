@@ -75,7 +75,11 @@ class NewPathDifficultyFragment : Fragment() {
            setDifficulty(radioGroup)
         }
 
-        binding.button.setOnClickListener {
+        binding.previousButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding.doneButton.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.insertPath(
                     Path(

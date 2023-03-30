@@ -47,7 +47,15 @@ class NewPathDateFragment : Fragment() {
             viewModel.setDateValue(newDate.timeInMillis)
         }
 
-        binding.button.setOnClickListener {
+        binding.previousButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding.previousButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding.nextButton.setOnClickListener {
             val date = binding.calendarView.date
             viewModel.setDateValue(date)
 

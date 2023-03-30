@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.di.SimplePathRep
 import com.example.core.repository.PathRepository
-import com.example.model.model.Difficulty
 import com.example.model.model.Path
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

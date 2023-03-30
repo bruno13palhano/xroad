@@ -14,7 +14,7 @@
             android:title="Home"/>
 
         <item
-            android:id="@id/roads_navigation"
+            android:id="@id/paths_navigation"
             android:title="Roads"/>
     </group>
 </menu>

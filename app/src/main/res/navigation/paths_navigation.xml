@@ -2,24 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/roads_navigation"
-    app:startDestination="@id/roadsFragment">
+    android:id="@+id/paths_navigation"
+    app:startDestination="@id/pathsFragment">
 
     <fragment
-        android:id="@+id/roadsFragment"
+        android:id="@+id/pathsFragment"
         android:name="com.example.xroad.ui.roads.PathsFragment"
-        android:label="RoadsFragment"
+        android:label="@string/all_paths_label"
         tools:layout="@layout/fragment_paths">
 
         <action
             android:id="@+id/action_paths_to_path"
-            app:destination="@id/roadFragment" />
+            app:destination="@id/pathFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/roadFragment"
+        android:id="@+id/pathFragment"
         android:name="com.example.xroad.ui.path.PathFragment"
-        android:label="RoadFragment"
+        android:label="@string/path_label"
         tools:layout="@layout/fragment_path">
 
         <argument

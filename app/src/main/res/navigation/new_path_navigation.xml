@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/newPathTitleAndTopicFragment"
         android:name="com.example.xroad.ui.newpath.NewPathTitleAndTopicFragment"
-        android:label="TitleAndTopic"
+        android:label="@string/title_and_topic_label"
         tools:layout="@layout/fragment_new_path_title_and_topic">
 
         <action
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/newPathDescriptionFragment"
         android:name="com.example.xroad.ui.newpath.NewPathDescriptionFragment"
-        android:label="Description"
+        android:label="@string/description_label"
         tools:layout="@layout/fragment_new_path_description">
 
         <action
@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/newPathDurationFragment"
         android:name="com.example.xroad.ui.newpath.NewPathDurationFragment"
-        android:label="Duration"
+        android:label="@string/duration_label"
         tools:layout="@layout/fragment_new_path_duration">
 
         <action
@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/newPathDateFragment"
         android:name="com.example.xroad.ui.newpath.NewPathDateFragment"
-        android:label="Date"
+        android:label="@string/date_label"
         tools:layout="@layout/fragment_new_path_date">
 
         <action
@@ -52,7 +52,7 @@
     <fragment
         android:id="@+id/newPathDifficultyFragment"
         android:name="com.example.xroad.ui.newpath.NewPathDifficultyFragment"
-        android:label="Difficult"
+        android:label="@string/difficulty_label"
         tools:layout="@layout/fragment_new_path_difficulty">
 
         <action

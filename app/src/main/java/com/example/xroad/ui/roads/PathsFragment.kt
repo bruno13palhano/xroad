@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RoadsFragment : Fragment() {
+class PathsFragment : Fragment() {
     private val viewModel: PathsViewModel by viewModels()
 
     override fun onCreateView(
@@ -28,7 +28,7 @@ class RoadsFragment : Fragment() {
 
         val adapter = PathsAdapter {
             findNavController().navigate(
-                RoadsFragmentDirections.actionRoadsToToad(it))
+                PathsFragmentDirections.actionPathsToPath(it))
         }
         pathRecyclerView.adapter = adapter
 

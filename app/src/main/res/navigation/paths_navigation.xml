@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/roadsFragment"
-        android:name="com.example.xroad.ui.roads.RoadsFragment"
+        android:name="com.example.xroad.ui.roads.PathsFragment"
         android:label="RoadsFragment"
         tools:layout="@layout/fragment_paths">
 
         <action
-            android:id="@+id/action_roads_to_toad"
+            android:id="@+id/action_paths_to_path"
             app:destination="@id/roadFragment" />
     </fragment>
 

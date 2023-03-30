@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathDateBinding
 import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,15 +63,5 @@ class NewPathDateFragment : Fragment() {
         }
 
         return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
-        binding.toolbar.title = getString(R.string.date_label)
-
-        binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
-        }
     }
 }

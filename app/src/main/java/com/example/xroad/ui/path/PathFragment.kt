@@ -15,10 +15,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.model.model.Difficulty
 import com.example.model.model.Path
-import com.example.xroad.R
 import com.example.xroad.databinding.FragmentPathBinding
 import com.example.xroad.ui.path.viewmodel.PathViewModel
-import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*
@@ -141,17 +139,6 @@ class PathFragment : Fragment() {
         }
 
         return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbar)
-        toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
-        toolbar.title = getString(R.string.path_label)
-
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
-        }
     }
 
     private fun durationInMillisecondsToString(duration: Long): String{

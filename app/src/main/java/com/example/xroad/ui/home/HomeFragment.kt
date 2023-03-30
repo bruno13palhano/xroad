@@ -5,26 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.example.xroad.MainActivity
 import com.example.xroad.R
-import com.google.android.material.appbar.MaterialToolbar
+import com.example.xroad.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private lateinit var drawer: DrawerLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         drawer = ((activity as MainActivity)).findViewById(R.id.drawer_layout)
 
-        val button = view.findViewById<Button>(R.id.button)
-        button.setOnClickListener {
+        binding.addButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeToNewPath()
             )
@@ -35,11 +36,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbar)
-        toolbar.setNavigationIcon(R.drawable.baseline_menu_24)
-        toolbar.title = getString(R.string.app_name)
+        binding.toolbar.setNavigationIcon(R.drawable.baseline_menu_24)
+        binding.toolbar.title = getString(R.string.app_name)
 
-        toolbar.setNavigationOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             drawer.open()
         }
     }

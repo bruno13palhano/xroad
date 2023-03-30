@@ -22,22 +22,4 @@ internal interface PathDao {
 
     @Update
     suspend fun updatePath(path: PathData)
-
-    @Query("UPDATE path_table SET title = :title WHERE id = :id")
-    suspend fun updatePathTitle(title: String, id: Long)
-
-    @Query("UPDATE path_table SET topic = :topic WHERE id = :id")
-    suspend fun updatePathTopic(topic: String, id: Long)
-
-    @Query("UPDATE path_table SET description = :description WHERE id = :id")
-    suspend fun updatePathDescription(description: String, id: Long)
-
-    @Query("UPDATE path_table SET duration = :duration WHERE id = :id")
-    suspend fun updatePathDuration(duration: Long, id: Long)
-
-    @Query("UPDATE path_table SET date = :date WHERE id = :id")
-    suspend fun updatePathDate(date: Long, id: Long)
-
-    @Query("UPDATE path_table SET difficulty = :difficulty WHERE id = :id")
-    suspend fun updatePathDifficulty(difficulty: Difficulty, id: Long)
 }

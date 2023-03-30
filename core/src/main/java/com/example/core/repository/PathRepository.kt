@@ -1,6 +1,5 @@
 package com.example.core.repository
 
-import com.example.model.model.Difficulty
 import com.example.model.model.Path
 import kotlinx.coroutines.flow.Flow
 

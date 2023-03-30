@@ -3,7 +3,6 @@ package com.example.core.repository
 import com.example.core.database.PathDao
 import com.example.core.database.asPath
 import com.example.core.database.asPathData
-import com.example.model.model.Difficulty
 import com.example.model.model.Path
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

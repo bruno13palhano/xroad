@@ -19,6 +19,7 @@
 <!--  Path  -->
     <string name="title_label">Title</string>
     <string name="topic_label">Topic</string>
+    <string name="add_new_path_label">Add a new path</string>
 
 <!--  Difficulty labels  -->
     <string name="very_easy_label">Very Easy</string>

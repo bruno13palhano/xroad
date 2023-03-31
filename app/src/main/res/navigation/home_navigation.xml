@@ -12,8 +12,8 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_home_to_road"
-            app:destination="@id/roadFragment" />
+            android:id="@+id/action_home_to_path"
+            app:destination="@id/pathFragment" />
 
         <action
             android:id="@+id/action_home_to_newPath"
@@ -25,13 +25,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/roadFragment"
+        android:id="@+id/pathFragment"
         android:name="com.example.xroad.ui.path.PathFragment"
-        android:label="RoadFragment"
+        android:label="@string/path_label"
         tools:layout="@layout/fragment_path">
 
         <argument
-            android:name="roadId"
+            android:name="pathId"
             app:argType="long" />
     </fragment>
 </navigation>

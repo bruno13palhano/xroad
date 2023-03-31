@@ -34,7 +34,7 @@ class PathFragment : Fragment() {
         _binding = FragmentPathBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val roadId = PathFragmentArgs.fromBundle(requireArguments()).roadId
+        val roadId = PathFragmentArgs.fromBundle(requireArguments()).pathId
 
         var title = ""
         var topic = ""

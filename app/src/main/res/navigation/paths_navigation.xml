@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/pathsFragment"
-        android:name="com.example.xroad.ui.roads.PathsFragment"
+        android:name="com.example.xroad.ui.paths.PathsFragment"
         android:label="@string/all_paths_label"
         tools:layout="@layout/fragment_paths">
 
@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_path">
 
         <argument
-            android:name="roadId"
+            android:name="pathId"
             app:argType="long" />
     </fragment>
 </navigation>

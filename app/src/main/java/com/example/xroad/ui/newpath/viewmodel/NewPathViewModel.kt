@@ -75,4 +75,21 @@ class NewPathViewModel @Inject constructor(
         _date.value = currentDate.timeInMillis
         _difficulty.value = Difficulty.NORMAL
     }
+
+    fun restoreTitleAndTopicValue() {
+        _title.value = ""
+        _topic.value = ""
+    }
+
+    fun restoreDescription() {
+        _description.value = ""
+    }
+
+    fun restoreDuration() {
+        _duration.value = currentDate.timeInMillis
+    }
+
+    fun restoreDate() {
+        _date.value = currentDate.timeInMillis
+    }
 }

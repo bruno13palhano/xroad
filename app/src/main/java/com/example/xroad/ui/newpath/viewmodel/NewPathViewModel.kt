@@ -81,15 +81,15 @@ class NewPathViewModel @Inject constructor(
         _topic.value = ""
     }
 
-    fun restoreDescription() {
+    fun restoreDescriptionValue() {
         _description.value = ""
     }
 
-    fun restoreDuration() {
+    fun restoreDurationValue() {
         _duration.value = currentDate.timeInMillis
     }
 
-    fun restoreDate() {
+    fun restoreDateValue() {
         _date.value = currentDate.timeInMillis
     }
 }

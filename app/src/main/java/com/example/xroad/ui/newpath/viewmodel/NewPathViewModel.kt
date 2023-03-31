@@ -92,4 +92,8 @@ class NewPathViewModel @Inject constructor(
     fun restoreDateValue() {
         _date.value = currentDate.timeInMillis
     }
+
+    fun restoreDifficultyValue() {
+        _difficulty.value = Difficulty.NORMAL
+    }
 }

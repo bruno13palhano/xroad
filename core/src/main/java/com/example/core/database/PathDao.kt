@@ -14,11 +14,14 @@ internal interface PathDao {
     suspend fun insert(path: PathData)
 
     @Query("SELECT * FROM path_table")
-    fun getAll(): Flow<List<PathData>>
+    fun getAllStream(): Flow<List<PathData>>
 
     @Query("SELECT * FROM path_table WHERE id = :id")
-    fun getPathById(id: Long): Flow<PathData>
+    fun getPathByIdStream(id: Long): Flow<PathData>
 
     @Update
     suspend fun updatePath(path: PathData)
+
+    @Query("SELECT COUNT(id) FROM path_table")
+    fun getPathCountStream(): Flow<Int>
 }

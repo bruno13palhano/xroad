@@ -17,21 +17,25 @@ internal class SimplePathRepository @Inject constructor(
         pathDao.insert(path.asPathData())
     }
 
-    override fun getAll(): Flow<List<Path>> {
-        return pathDao.getAll().map {
+    override fun getAllStream(): Flow<List<Path>> {
+        return pathDao.getAllStream().map {
             it.map { pathData ->
                 pathData.asPath()
             }
         }
     }
 
-    override fun getPathById(id: Long): Flow<Path> {
-        return pathDao.getPathById(id).map {
+    override fun getPathByIdStream(id: Long): Flow<Path> {
+        return pathDao.getPathByIdStream(id).map {
             it.asPath()
         }
     }
 
     override suspend fun updatePath(path: Path) {
         pathDao.updatePath(path.asPathData())
+    }
+
+    override fun getPathCountStream(): Flow<Int> {
+        return pathDao.getPathCountStream()
     }
 }

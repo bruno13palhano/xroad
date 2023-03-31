@@ -5,7 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface PathRepository {
     suspend fun insert(path: Path)
-    fun getAll(): Flow<List<Path>>
-    fun getPathById(id: Long): Flow<Path>
+    fun getAllStream(): Flow<List<Path>>
+    fun getPathByIdStream(id: Long): Flow<Path>
     suspend fun updatePath(path: Path)
+    fun getPathCountStream(): Flow<Int>
 }

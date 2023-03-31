@@ -77,7 +77,7 @@ class NewPathDurationFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.restore_values -> {
-                        println("Duration")
+                        viewModel.restoreDurationValue()
                         true
                     }
                     else -> false

@@ -38,6 +38,13 @@ class NewPathDescriptionFragment : Fragment() {
             }
         }
 
+        binding.description.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                val description = binding.description.text.toString()
+                viewModel.setDescription(description)
+            }
+        }
+
         binding.previousButton.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -66,12 +73,17 @@ class NewPathDescriptionFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.restore_values -> {
-                        println("Description")
+                        restoreDescriptionValue()
                         true
                     }
                     else -> false
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    private fun restoreDescriptionValue() {
+        binding.description.setText("")
+        viewModel.restoreDescriptionValue()
     }
 }

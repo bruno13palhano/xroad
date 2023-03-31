@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -45,16 +46,25 @@ class NewPathTitleAndTopicFragment : Fragment() {
             }
         }
 
+        binding.title.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                val title = binding.title.text.toString()
+                viewModel.setTitleValue(title)
+            }
+        }
+
+        binding.topic.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                val topic = binding.topic.text.toString()
+                viewModel.setTopicValue(topic)
+            }
+        }
+
         binding.previousButton.setOnClickListener {
             findNavController().navigateUp()
         }
 
         binding.nextButton.setOnClickListener {
-            val title = binding.title.text.toString()
-            val topic = binding.topic.text.toString()
-            viewModel.setTitleValue(title)
-            viewModel.setTopicValue(topic)
-
             findNavController().navigate(
                 NewPathTitleAndTopicFragmentDirections.actionTitleAndTopicToDescription())
         }
@@ -75,12 +85,18 @@ class NewPathTitleAndTopicFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.restore_values -> {
-                        println("Title and Topics")
+                        restoreTitleAndTopicValues()
                         true
                     }
                     else -> false
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    private fun restoreTitleAndTopicValues() {
+        binding.title.setText("")
+        binding.topic.setText("")
+        viewModel.restoreTitleAndTopicValue()
     }
 }

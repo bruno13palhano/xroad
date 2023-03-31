@@ -79,7 +79,7 @@ class NewPathDateFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.restore_values -> {
-                        println("Date")
+                        viewModel.restoreDateValue()
                         true
                     }
                     else -> false

@@ -1,4 +1,4 @@
-package com.example.xroad.ui.roads
+package com.example.xroad.ui.paths
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

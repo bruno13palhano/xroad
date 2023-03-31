@@ -1,4 +1,4 @@
-package com.example.xroad.ui.roads
+package com.example.xroad.ui.paths
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

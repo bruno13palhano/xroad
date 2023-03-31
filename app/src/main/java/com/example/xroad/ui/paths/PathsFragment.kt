@@ -1,4 +1,4 @@
-package com.example.xroad.ui.roads
+package com.example.xroad.ui.paths
 
 import android.os.Bundle
 import android.view.*

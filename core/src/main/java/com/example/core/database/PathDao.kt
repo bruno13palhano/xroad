@@ -24,4 +24,7 @@ internal interface PathDao {
 
     @Query("SELECT COUNT(id) FROM path_table")
     fun getPathCountStream(): Flow<Int>
+
+    @Query("SELECT * FROM path_table WHERE id = (SELECT max(id) FROM path_table)")
+    fun getLastPath(): Flow<PathData>
 }

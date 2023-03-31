@@ -33,4 +33,12 @@
     <string name="restore_values_label">Restore values</string>
     <string name="home_label">Home</string>
     <string name="paths_label">Paths</string>
+
+<!--  Last path  -->
+    <string name="last_path_title_label">title: %s</string>
+    <string name="last_path_topic_label">topic: %s</string>
+    <string name="last_path_duration_label">duration: %s</string>
+    <string name="last_path_date_label">date: %s</string>
+    <string name="days_label">%d Days</string>
+    <string name="day_label">1 Day</string>
 </resources>

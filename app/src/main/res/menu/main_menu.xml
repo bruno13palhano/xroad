@@ -2,19 +2,21 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
+    <item android:title=""/>
     <group
         android:id="@+id/menuTop"
         android:checkableBehavior="single">
 
         <item
             android:id="@id/home_navigation"
-            android:title="Home"/>
+            android:title="@string/home_label"
+            android:icon="@drawable/baseline_home_24" />
 
         <item
             android:id="@id/paths_navigation"
-            android:title="Roads"/>
+            android:title="@string/paths_label"
+            android:icon="@drawable/baseline_edit_road_24" />
     </group>
 </menu>

@@ -31,4 +31,6 @@
 <!--  Menu  -->
     <string name="options_label">Options</string>
     <string name="restore_values_label">Restore values</string>
+    <string name="home_label">Home</string>
+    <string name="paths_label">Paths</string>
 </resources>

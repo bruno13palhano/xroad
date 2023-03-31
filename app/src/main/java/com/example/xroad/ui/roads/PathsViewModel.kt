@@ -14,7 +14,7 @@ class PathsViewModel @Inject constructor(
     @SimplePathRep private val pathRepository: PathRepository
 ): ViewModel() {
 
-    val uiState = pathRepository.getAll()
+    val uiState = pathRepository.getAllStream()
         .stateIn(
             initialValue = emptyList(),
             scope = viewModelScope,

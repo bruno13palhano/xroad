@@ -32,7 +32,7 @@ class PathViewModel @Inject constructor(
     }
 
     fun getPath(id: Long): Flow<Path> {
-        return pathRep.getPathById(id)
+        return pathRep.getPathByIdStream(id)
     }
 
     fun updatePath(path: Path) {

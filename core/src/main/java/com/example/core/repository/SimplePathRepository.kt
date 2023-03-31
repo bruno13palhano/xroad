@@ -39,8 +39,8 @@ internal class SimplePathRepository @Inject constructor(
         return pathDao.getPathCountStream()
     }
 
-    override fun getLastPath(): Flow<Path> {
-        return pathDao.getLastPath().map {
+    override fun getLastPathStream(): Flow<Path> {
+        return pathDao.getLastPathStream().map {
             it.asPath()
         }
     }

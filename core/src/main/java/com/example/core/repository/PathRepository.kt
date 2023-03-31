@@ -9,5 +9,5 @@ interface PathRepository {
     fun getPathByIdStream(id: Long): Flow<Path>
     suspend fun updatePath(path: Path)
     fun getPathCountStream(): Flow<Int>
-    fun getLastPath(): Flow<Path>
+    fun getLastPathStream(): Flow<Path>
 }

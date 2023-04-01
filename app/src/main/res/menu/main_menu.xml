@@ -18,5 +18,10 @@
             android:id="@id/paths_navigation"
             android:title="@string/paths_label"
             android:icon="@drawable/baseline_edit_road_24" />
+
+        <item
+            android:id="@id/analytics_navigation"
+            android:title="@string/analytics_label"
+            android:icon="@drawable/baseline_show_chart_24" />
     </group>
 </menu>

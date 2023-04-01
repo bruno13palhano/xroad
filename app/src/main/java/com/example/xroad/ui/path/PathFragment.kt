@@ -141,6 +141,11 @@ class PathFragment : Fragment() {
         return view
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun durationInMillisecondsToString(duration: Long): String{
         return DateFormat.getPatternInstance(DateFormat.HOUR24_MINUTE).format(duration)
     }

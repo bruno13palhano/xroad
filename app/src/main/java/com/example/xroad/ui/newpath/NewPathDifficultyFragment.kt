@@ -125,6 +125,11 @@ class NewPathDifficultyFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun checkDifficultyRadioButton(difficulty: Difficulty) {
         when (difficulty) {
             Difficulty.VERY_EASY -> {

@@ -94,6 +94,11 @@ class NewPathTitleAndTopicFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun restoreTitleAndTopicValues() {
         binding.title.setText("")
         binding.topic.setText("")

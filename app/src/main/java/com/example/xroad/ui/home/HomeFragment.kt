@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,7 +18,6 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -57,7 +55,7 @@ class HomeFragment : Fragment() {
                             .colorsTheme(arrayOf("#BB86FC"))
                             .series(
                                 arrayOf(AASeriesElement()
-                                    .name("Path")
+                                    .name("Hours per day")
                                     .data(durations.toTypedArray())
                                 ))
                         binding.chartPath.aa_drawChartWithChartModel(chartModel)
@@ -67,6 +65,11 @@ class HomeFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun setUiState(uiState: HomeUiState) {

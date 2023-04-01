@@ -82,6 +82,11 @@ class NewPathDescriptionFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun restoreDescriptionValue() {
         binding.description.setText("")
         viewModel.restoreDescriptionValue()

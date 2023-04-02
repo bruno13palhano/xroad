@@ -12,13 +12,23 @@
         tools:layout="@layout/fragment_analytics">
 
         <action
-            android:id="@+id/action_analytics_to_chart"
+            android:id="@+id/action_analytics_to_month_chart"
             app:destination="@id/analyticsChartFragment" />
+
+        <action
+            android:id="@+id/action_analytics_to_week_chart"
+            app:destination="@id/analyticsWeekChartFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/analyticsChartFragment"
-        android:name="com.example.xroad.ui.analytics.AnalyticsChartFragment"
+        android:name="com.example.xroad.ui.analytics.month.AnalyticsMonthChartFragment"
         android:label="@string/analytics_chart_label"
-        tools:layout="@layout/fragment_analytics_chart" />
+        tools:layout="@layout/fragment_analytics_month_chart" />
+
+    <fragment
+        android:id="@+id/analyticsWeekChartFragment"
+        android:name="com.example.xroad.ui.analytics.week.AnalyticsWeekChartFragment"
+        android:label="Chart Week"
+        tools:layout="@layout/fragment_analytics_week_chart" />
 </navigation>

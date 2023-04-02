@@ -94,7 +94,7 @@ class AnalyticsWeekChartViewModel @Inject constructor(
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = duration
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE)
+        val minute = calendar.get(Calendar.MINUTE) * 100/60
 
         return "$hour.$minute".toFloat()
     }

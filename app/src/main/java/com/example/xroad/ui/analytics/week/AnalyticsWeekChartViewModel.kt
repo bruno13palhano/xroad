@@ -78,7 +78,7 @@ class AnalyticsWeekChartViewModel @Inject constructor(
 
     private fun validateDayList(day: List<Float>): Float {
         return if (day.sum() == 0.0F) 0.0F else {
-            "%.2f".format(day.sum()/day.size).toFloat()
+            String.format("%.2f", (day.sum()/day.size)).replace(",", ".").toFloat()
         }
     }
 

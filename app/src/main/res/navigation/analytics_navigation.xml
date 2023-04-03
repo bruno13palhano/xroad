@@ -18,6 +18,10 @@
         <action
             android:id="@+id/action_analytics_to_week_chart"
             app:destination="@id/analyticsWeekChartFragment" />
+
+        <action
+            android:id="@+id/action_analytics_to_difficulty_chart"
+            app:destination="@id/analyticsDifficultyChartFragment" />
     </fragment>
 
     <fragment
@@ -29,6 +33,12 @@
     <fragment
         android:id="@+id/analyticsWeekChartFragment"
         android:name="com.example.xroad.ui.analytics.week.AnalyticsWeekChartFragment"
-        android:label="Chart Week"
+        android:label="@string/week_chart_label"
         tools:layout="@layout/fragment_analytics_week_chart" />
+
+    <fragment
+        android:id="@+id/analyticsDifficultyChartFragment"
+        android:name="com.example.xroad.ui.analytics.difficulty.AnalyticsDifficultyChartFragment"
+        android:label="@string/difficulty_chart_label"
+        tools:layout="@layout/fragment_analytics_difficulty_chart" />
 </navigation>

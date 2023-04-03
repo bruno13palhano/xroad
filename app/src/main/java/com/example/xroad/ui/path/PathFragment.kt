@@ -166,7 +166,7 @@ class PathFragment : Fragment() {
     private fun durationToMilliseconds(minute: Int, hour: Int): Long {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.MINUTE, minute)
-        calendar.set(Calendar.HOUR, hour)
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
 
         return calendar.timeInMillis
     }

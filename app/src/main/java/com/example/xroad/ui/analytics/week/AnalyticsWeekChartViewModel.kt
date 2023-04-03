@@ -18,56 +18,54 @@ class AnalyticsWeekChartViewModel @Inject constructor(
 
     val uiState = pathRepository.getAllStream()
         .map {
-            val sunday = it.filter { path ->
-                isTheDay(path.dateInMilliseconds, 1)
-            }.map { path ->
-                durationToFloat(path.durationInMilliseconds)
-            }
+            val sundayMinutes = mutableListOf<Int>()
+            val sundayHours = mutableListOf<Int>()
+            val mondayMinutes = mutableListOf<Int>()
+            val mondayHours = mutableListOf<Int>()
+            val tuesdayMinutes = mutableListOf<Int>()
+            val tuesdayHours = mutableListOf<Int>()
+            val wednesdayMinutes = mutableListOf<Int>()
+            val wednesdayHours = mutableListOf<Int>()
+            val thursdayMinutes = mutableListOf<Int>()
+            val thursdayHours = mutableListOf<Int>()
+            val fridayMinutes = mutableListOf<Int>()
+            val fridayHours = mutableListOf<Int>()
+            val saturdayMinutes = mutableListOf<Int>()
+            val saturdayHours = mutableListOf<Int>()
 
-            val monday = it.filter { path ->
-                isTheDay(path.dateInMilliseconds, 2)
-            }.map { path ->
-                durationToFloat(path.durationInMilliseconds)
-            }
-
-            val tuesday = it.filter { path ->
-                isTheDay(path.dateInMilliseconds, 3)
-            }.map { path ->
-                durationToFloat(path.durationInMilliseconds)
-            }
-
-            val wednesday = it.filter { path ->
-                isTheDay(path.dateInMilliseconds, 4)
-            }.map { path ->
-                durationToFloat(path.durationInMilliseconds)
-            }
-
-            val thursday = it.filter { path ->
-                isTheDay(path.dateInMilliseconds, 5)
-            }.map { path ->
-                durationToFloat(path.durationInMilliseconds)
-            }
-
-            val friday = it.filter { path ->
-                isTheDay(path.dateInMilliseconds, 6)
-            }.map {  path ->
-                durationToFloat(path.durationInMilliseconds)
-            }
-
-            val saturday = it.filter { path ->
-                isTheDay(path.dateInMilliseconds, 7)
-            }.map { path ->
-                durationToFloat(path.durationInMilliseconds)
+            it.forEach { path ->
+                if (isTheDay(path.dateInMilliseconds, 1)) {
+                    sundayHours.add(hoursToInt(path.durationInMilliseconds))
+                    sundayMinutes.add(minutesToInt(path.durationInMilliseconds))
+                } else if (isTheDay(path.dateInMilliseconds, 2)) {
+                    mondayHours.add(hoursToInt(path.durationInMilliseconds))
+                    mondayMinutes.add(minutesToInt(path.durationInMilliseconds))
+                } else if (isTheDay(path.dateInMilliseconds, 3)) {
+                    tuesdayHours.add(hoursToInt(path.durationInMilliseconds))
+                    tuesdayMinutes.add(minutesToInt(path.durationInMilliseconds))
+                } else if (isTheDay(path.dateInMilliseconds, 4)) {
+                    wednesdayHours.add(hoursToInt(path.durationInMilliseconds))
+                    wednesdayMinutes.add(minutesToInt(path.durationInMilliseconds))
+                } else if (isTheDay(path.dateInMilliseconds, 5)) {
+                    thursdayHours.add(hoursToInt(path.durationInMilliseconds))
+                    thursdayMinutes.add(minutesToInt(path.durationInMilliseconds))
+                } else if (isTheDay(path.dateInMilliseconds, 6)) {
+                    fridayHours.add(hoursToInt(path.durationInMilliseconds))
+                    fridayMinutes.add(minutesToInt(path.durationInMilliseconds))
+                } else if (isTheDay(path.dateInMilliseconds, 7)) {
+                    saturdayHours.add(hoursToInt(path.durationInMilliseconds))
+                    saturdayMinutes.add(minutesToInt(path.durationInMilliseconds))
+                }
             }
 
             ChartUiState(
-                sunday = validateDayList(sunday),
-                monday = validateDayList(monday),
-                tuesday = validateDayList(tuesday),
-                wednesday = validateDayList(wednesday),
-                thursday = validateDayList(thursday),
-                friday = validateDayList(friday),
-                saturday = validateDayList(saturday)
+                sunday = averageDurationToDecimal(sundayHours, sundayMinutes),
+                monday = averageDurationToDecimal(mondayHours, mondayMinutes),
+                tuesday = averageDurationToDecimal(tuesdayHours, tuesdayMinutes),
+                wednesday = averageDurationToDecimal(wednesdayHours, wednesdayMinutes),
+                thursday = averageDurationToDecimal(thursdayHours, thursdayMinutes),
+                friday = averageDurationToDecimal(fridayHours, fridayMinutes),
+                saturday = averageDurationToDecimal(saturdayHours, saturdayMinutes)
             )
         }
             .stateIn(
@@ -75,12 +73,6 @@ class AnalyticsWeekChartViewModel @Inject constructor(
                 initialValue = ChartUiState(),
                 started = WhileSubscribed(5_000)
             )
-
-    private fun validateDayList(day: List<Float>): Float {
-        return if (day.sum() == 0.0F) 0.0F else {
-            String.format("%.2f", (day.sum()/day.size)).replace(",", ".").toFloat()
-        }
-    }
 
     private fun isTheDay(date: Long, day: Int): Boolean {
         val calendar = Calendar.getInstance()
@@ -90,13 +82,36 @@ class AnalyticsWeekChartViewModel @Inject constructor(
         return theDay == day
     }
 
-    private fun durationToFloat(duration: Long): Float {
+    private fun averageDurationToDecimal(hours: List<Int>, minutes: List<Int>): Float {
+        var totalHours = hours.sum()
+        var totalMinute = 0
+
+        minutes.forEach {
+            totalMinute += it
+            if (totalMinute >= 60) {
+                totalHours++
+                totalMinute -= 60
+            }
+        }
+
+        val durationDecimal = "$totalHours.${totalMinute * 100 / 60}".toFloat()
+
+        return if (durationDecimal == 0.0F) 0.0F else String
+            .format("%.2f", durationDecimal/hours.size).replace(",", ".").toFloat()
+    }
+
+    private fun hoursToInt(duration: Long): Int {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = duration
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE) * 100/60
 
-        return "$hour.$minute".toFloat()
+        return calendar.get(Calendar.HOUR_OF_DAY)
+    }
+
+    private fun minutesToInt(duration: Long): Int {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = duration
+
+        return calendar.get(Calendar.MINUTE)
     }
 
     data class ChartUiState(

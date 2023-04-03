@@ -82,12 +82,23 @@
     <string name="november_gold_label">#FFD700</string>
     <string name="december_dark_red">#8b0000</string>
 
+    <!-- Chart Bar colors -->
+    <string name="red_primary">#FF1E00</string>
+    <string name="white_primary">#E8F9FD</string>
+    <string name="green_primary">#59CE8F</string>
+    <string name="gray_primary">#3C4048</string>
+    <string name="white">#FFFFFF</string>
+
     <!--  Chart labels  -->
-    <string name="paths_expertise">All paths to Expertise</string>
+    <string name="paths_expertise_label">All paths to Expertise</string>
     <string name="hours_label">Hours</string>
     <string name="average_hours_label">Average Hours</string>
-    <string name="average_hours_week_day">Average hours per days of week</string>
+    <string name="average_hours_week_day_label">Average hours per days of week</string>
     <string name="week_chart_label">Week Chart</string>
     <string name="difficulty_chart_label">Difficulty Chart</string>
     <string name="hour_difficulty_label">Average hours per difficulty</string>
+    <string name="average_hours_month_label">Average hours per month</string>
+    <string name="hours_day_week_label">Hours/Day of Week</string>
+    <string name="hours_month_label">Hours/Month</string>
+    <string name="hours_difficulty_label">Hours/Difficulty</string>
 </resources>

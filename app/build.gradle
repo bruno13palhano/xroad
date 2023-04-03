@@ -67,5 +67,5 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    implementation 'com.github.AAChartModel:AAChartCore-Kotlin:-SNAPSHOT'
+    implementation 'com.github.AAChartModel:AAChartCore-Kotlin:7.2.0'
 }

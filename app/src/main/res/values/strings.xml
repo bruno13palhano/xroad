@@ -87,4 +87,7 @@
     <string name="hours_label">Hours</string>
     <string name="average_hours_label">Average Hours</string>
     <string name="average_hours_week_day">Average hours per days of week</string>
+    <string name="week_chart_label">Week Chart</string>
+    <string name="difficulty_chart_label">Difficulty Chart</string>
+    <string name="hour_difficulty_label">Average hours per difficulty</string>
 </resources>

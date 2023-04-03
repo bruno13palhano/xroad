@@ -14,6 +14,7 @@ import com.example.xroad.databinding.FragmentAnalyticsWeekChartBinding
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -35,10 +36,14 @@ class AnalyticsWeekChartFragment : Fragment() {
                 viewModel.uiState.collect {
                     val chartModel: AAChartModel = AAChartModel()
                         .chartType(AAChartType.Column)
-                        .title(getString(R.string.hours_label))
-                        .subtitle(getString(R.string.average_hours_week_day))
+                        .title(getString(R.string.hours_day_week_label))
+                        .titleStyle(AAStyle().color(getString(R.string.white)))
+                        .subtitle(getString(R.string.average_hours_week_day_label))
+                        .subtitleStyle(AAStyle().color(getString(R.string.white)))
                         .dataLabelsEnabled(true)
-                        .colorsTheme(arrayOf(getString(R.string.january_light_blue_label)))
+                        .backgroundColor(getString(R.string.gray_primary))
+                        .axesTextColor(getString(R.string.white))
+                        .dataLabelsStyle(AAStyle().color(getString(R.string.white)))
                         .series(
                             arrayOf(
                                 AASeriesElement()
@@ -54,7 +59,7 @@ class AnalyticsWeekChartFragment : Fragment() {
                                             it.saturday
                                         )
                                     )
-                                    .color(getString(R.string.january_light_blue_label)),
+                                    .color(getString(R.string.july_yellow_label)),
                             )).categories(
                                 arrayOf(
                                     getString(R.string.sunday_label),

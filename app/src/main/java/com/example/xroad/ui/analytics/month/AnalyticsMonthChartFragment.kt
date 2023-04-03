@@ -14,6 +14,7 @@ import com.example.xroad.databinding.FragmentAnalyticsMonthChartBinding
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -35,10 +36,14 @@ class AnalyticsMonthChartFragment : Fragment() {
                 viewModel.uiState.collect {
                     val chartModel: AAChartModel = AAChartModel()
                         .chartType(AAChartType.Column)
-                        .title(getString(R.string.paths_label))
-                        .subtitle(getString(R.string.paths_expertise))
+                        .title(getString(R.string.hours_month_label))
+                        .titleStyle(AAStyle().color(getString(R.string.white)))
+                        .subtitle(getString(R.string.average_hours_month_label))
+                        .subtitleStyle(AAStyle().color(getString(R.string.white)))
                         .dataLabelsEnabled(true)
-                        .colorsTheme(arrayOf("#BB86FC"))
+                        .backgroundColor(getString(R.string.gray_primary))
+                        .axesTextColor(getString(R.string.white))
+                        .dataLabelsStyle(AAStyle().color(getString(R.string.white)))
                         .series(
                             arrayOf(
                                 AASeriesElement()

@@ -14,6 +14,7 @@ import com.example.xroad.databinding.FragmentAnalyticsDifficultyChartBinding
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -35,10 +36,14 @@ class AnalyticsDifficultyChartFragment : Fragment() {
                 viewModel.uiState.collect {
                     val chartModel: AAChartModel = AAChartModel()
                         .chartType(AAChartType.Column)
-                        .title(getString(R.string.difficulty_label))
+                        .title(getString(R.string.hours_difficulty_label))
+                        .titleStyle(AAStyle().color(getString(R.string.white)))
                         .subtitle(getString(R.string.hour_difficulty_label))
+                        .subtitleStyle(AAStyle().color(getString(R.string.white)))
                         .dataLabelsEnabled(true)
-                        .colorsTheme(arrayOf("#BB86FC"))
+                        .backgroundColor(getString(R.string.gray_primary))
+                        .axesTextColor(getString(R.string.white))
+                        .dataLabelsStyle(AAStyle().color(getString(R.string.white)))
                         .series(
                             arrayOf(
                                 AASeriesElement()
@@ -52,7 +57,7 @@ class AnalyticsDifficultyChartFragment : Fragment() {
                                             it.veryHardAverageDuration
                                         )
                                     )
-                                    .color(getString(R.string.january_light_blue_label))
+                                    .color(getString(R.string.july_yellow_label))
                             )).categories(
                             arrayOf(
                                 getString(R.string.very_easy_label),

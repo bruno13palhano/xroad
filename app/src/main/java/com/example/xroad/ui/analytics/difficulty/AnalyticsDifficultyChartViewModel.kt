@@ -1,12 +1,17 @@
 package com.example.xroad.ui.analytics.difficulty
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.core.di.SimplePathRep
 import com.example.core.repository.PathRepository
 import com.example.model.model.Difficulty
+import com.example.xroad.ui.analytics.averageDurationToDecimal
+import com.example.xroad.ui.analytics.hoursToInt
+import com.example.xroad.ui.analytics.minutesToInt
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.map
-import java.util.*
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
@@ -53,45 +58,18 @@ class AnalyticsDifficultyChartViewModel @Inject constructor(
             }
 
             ChartUiState(
-                veryEasyAverageDuration = averageDurationToDecimal(veryEasyMinutes, veryEasyHours),
-                easyAverageDuration = averageDurationToDecimal(easyMinutes, easyHours),
-                normalAverageDuration = averageDurationToDecimal(normalMinutes, normalHours),
-                hardAverageDuration = averageDurationToDecimal(hardMinutes, hardHours),
-                veryHardAverageDuration = averageDurationToDecimal(veryHardMinutes, veryHardHours)
+                veryEasyAverageDuration = averageDurationToDecimal(veryEasyHours, veryEasyMinutes),
+                easyAverageDuration = averageDurationToDecimal(easyHours, easyMinutes),
+                normalAverageDuration = averageDurationToDecimal(normalHours, normalMinutes),
+                hardAverageDuration = averageDurationToDecimal(hardHours, hardMinutes),
+                veryHardAverageDuration = averageDurationToDecimal(veryHardHours, veryHardMinutes)
             )
         }
-
-    private fun averageDurationToDecimal(minutes: List<Int>, hours: List<Int>): Float {
-        var totalHours = hours.sum()
-        var totalMinute = 0
-
-        minutes.forEach {
-            totalMinute += it
-            if (totalMinute >= 60) {
-                totalHours++
-                totalMinute -= 60
-            }
-        }
-
-        val durationDecimal = "$totalHours.${totalMinute * 100 / 60}".toFloat()
-
-        return if (durationDecimal == 0.0F) 0.0F else String
-            .format("%.2f", durationDecimal/hours.size).replace(",", ".").toFloat()
-    }
-
-    private fun minutesToInt(duration: Long): Int {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = duration
-
-        return calendar.get(Calendar.MINUTE)
-    }
-
-    private fun hoursToInt(duration: Long): Int {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = duration
-
-        return calendar.get(Calendar.HOUR_OF_DAY)
-    }
+        .stateIn(
+            scope = viewModelScope,
+            initialValue = ChartUiState(),
+            started = WhileSubscribed(5_000)
+        )
 
     data class ChartUiState(
         val veryEasyAverageDuration: Float = 0.0F,

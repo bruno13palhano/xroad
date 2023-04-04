@@ -127,15 +127,14 @@
             android:inputType="text"
             android:minHeight="160dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/done_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:layout_gravity="end"
-            android:contentDescription="@string/done_label"
-            android:src="@drawable/baseline_done_24"
+            app:icon="@drawable/baseline_done_24"
             android:text="@string/done_label" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

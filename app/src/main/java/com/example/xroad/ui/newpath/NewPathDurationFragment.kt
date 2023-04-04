@@ -52,10 +52,6 @@ class NewPathDurationFragment : Fragment() {
             timePicker.show()
         }
 
-        binding.previousButton.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
         binding.nextButton.setOnClickListener {
             findNavController().navigate(
                 NewPathDurationFragmentDirections.actionDurationToDate())

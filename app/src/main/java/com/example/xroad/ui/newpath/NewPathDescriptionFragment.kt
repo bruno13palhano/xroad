@@ -45,10 +45,6 @@ class NewPathDescriptionFragment : Fragment() {
             }
         }
 
-        binding.previousButton.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
         binding.nextButton.setOnClickListener {
             val description = binding.description.text.toString()
             viewModel.setDescription(description)

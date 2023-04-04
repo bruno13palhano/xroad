@@ -5,7 +5,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -58,10 +57,6 @@ class NewPathTitleAndTopicFragment : Fragment() {
                 val topic = binding.topic.text.toString()
                 viewModel.setTopicValue(topic)
             }
-        }
-
-        binding.previousButton.setOnClickListener {
-            findNavController().navigateUp()
         }
 
         binding.nextButton.setOnClickListener {

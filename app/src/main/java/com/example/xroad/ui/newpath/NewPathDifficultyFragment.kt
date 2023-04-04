@@ -72,12 +72,8 @@ class NewPathDifficultyFragment : Fragment() {
             }
         }
 
-        binding.difficultyGroup.setOnCheckedChangeListener { radioGroup, i ->
+        binding.difficultyGroup.setOnCheckedChangeListener { radioGroup, _ ->
            setDifficulty(radioGroup)
-        }
-
-        binding.previousButton.setOnClickListener {
-            findNavController().navigateUp()
         }
 
         binding.doneButton.setOnClickListener {

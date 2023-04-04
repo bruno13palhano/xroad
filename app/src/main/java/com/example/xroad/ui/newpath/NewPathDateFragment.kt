@@ -38,21 +38,13 @@ class NewPathDateFragment : Fragment() {
             }
         }
 
-        binding.calendarView.setOnDateChangeListener { calendarView, year, month, day ->
+        binding.calendarView.setOnDateChangeListener { _, year, month, day ->
             val newDate = Calendar.getInstance()
             newDate.set(Calendar.YEAR, year)
             newDate.set(Calendar.MONTH, month)
             newDate.set(Calendar.DAY_OF_MONTH, day)
 
             viewModel.setDateValue(newDate.timeInMillis)
-        }
-
-        binding.previousButton.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
-        binding.previousButton.setOnClickListener {
-            findNavController().navigateUp()
         }
 
         binding.nextButton.setOnClickListener {

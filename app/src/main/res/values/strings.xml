@@ -86,7 +86,7 @@
     <string name="red_primary">#FF1E00</string>
     <string name="white_primary">#E8F9FD</string>
     <string name="green_primary">#59CE8F</string>
-    <string name="gray_primary">#3C4048</string>
+    <string name="gray_primary">#333533</string>
     <string name="white">#FFFFFF</string>
 
     <!--  Chart labels  -->

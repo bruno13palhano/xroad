@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">XRoad</string>
+    <string name="app_logo">App logo</string>
 
     <!--  Buttons  -->
     <string name="ok_label">OK</string>

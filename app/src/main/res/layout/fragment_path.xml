@@ -12,120 +12,135 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/path_title"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/path_title_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:autofillHints="topic"
-            android:hint="@string/title_label"
-            android:inputType="text"
-            android:maxWidth="488dp"
-            android:minHeight="56dp" />
+            android:autofillHints="title"
+            android:hint="@string/title_label">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/path_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/path_topic_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/topic_label"
+            android:autofillHints="topic">
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/path_topic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="56dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="@string/topic_label"
-                android:inputType="text"
-                android:autofillHints="topic" />
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/path_duration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="@string/duration_label"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="4dp"
-                android:paddingVertical="8dp" />
+        <TextView
+            android:id="@+id/path_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/duration_label"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            app:drawableStartCompat="@drawable/baseline_timer_24"/>
 
-            <TextView
-                android:id="@+id/path_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="@string/date_label"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="4dp"
-                android:paddingVertical="8dp" />
+        <TextView
+            android:id="@+id/path_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/date_label"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            app:drawableStartCompat="@drawable/baseline_calendar_month_24" />
 
-            <HorizontalScrollView
-                android:id="@+id/scrollView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp">
+        <HorizontalScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp">
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup"
-                    app:singleLine="true"
-                    app:singleSelection="true"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                app:singleLine="true"
+                app:singleSelection="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/very_easy_difficulty_chip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/very_easy_difficulty_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/very_easy_label" />
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/easy_difficulty_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/easy_label" />
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/normal_difficulty_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/normal_label" />
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/hard_difficulty_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/hard_label" />
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/very_hard_difficulty_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/very_hard_label" />
-                </com.google.android.material.chip.ChipGroup>
-            </HorizontalScrollView>
+                    android:layout_height="wrap_content"
+                    android:text="@string/very_easy_label" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/easy_difficulty_chip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/easy_label" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/normal_difficulty_chip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/normal_label" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/hard_difficulty_chip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hard_label" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/very_hard_difficulty_chip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/very_hard_label" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
-        <EditText
-            android:id="@+id/path_description"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/path_description_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
-            android:layout_weight="1"
-            android:autofillHints="description"
-            android:gravity="top"
             android:hint="@string/description_label"
-            android:inputType="text"
-            android:minHeight="160dp" />
+            android:autofillHints="description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/path_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:minLines="2" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/done_button"

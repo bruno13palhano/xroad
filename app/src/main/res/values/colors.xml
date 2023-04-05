@@ -14,4 +14,6 @@
     <color name="yellow_primary">#FFFF00</color>
     <color name="gray_primary">#333533</color>
     <color name="gray_secondary">#d6d6d6</color>
+    <color name="gray_background_night">#1e1e1e</color>
+    <color name="gray_background_day">#f6f6f6</color>
 </resources>

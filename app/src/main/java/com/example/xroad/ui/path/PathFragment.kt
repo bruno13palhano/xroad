@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.model.model.Difficulty
 import com.example.model.model.Path
+import com.example.xroad.R
 import com.example.xroad.databinding.FragmentPathBinding
 import com.example.xroad.ui.path.viewmodel.PathViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,9 +37,9 @@ class PathFragment : Fragment() {
 
         val roadId = PathFragmentArgs.fromBundle(requireArguments()).pathId
 
-        var title = ""
-        var topic = ""
-        var description = ""
+        var title: String
+        var topic: String
+        var description: String
         var duration = 0L
         var date = 0L
         var difficulty = Difficulty.NORMAL
@@ -95,7 +96,7 @@ class PathFragment : Fragment() {
             }
         }
 
-        val timePicker = TimePickerDialog(requireContext(), { _, hourOfDay, minute ->
+        val timePicker = TimePickerDialog(requireContext(), R.style.CustomPicker, { _, hourOfDay, minute ->
             duration = durationToMilliseconds(minute, hourOfDay)
             viewModel.setPathDurationValue(duration)
         }, currentHour, currentMinute, true)
@@ -105,7 +106,7 @@ class PathFragment : Fragment() {
             timePicker.show()
         }
 
-        val datePicker = DatePickerDialog(requireContext(), { _, year, monthOfYear, dayOfMonth ->
+        val datePicker = DatePickerDialog(requireContext(), R.style.CustomPicker, { _, year, monthOfYear, dayOfMonth ->
             date = dateToMilliseconds(dayOfMonth, monthOfYear, year)
             viewModel.setPathDateValue(date)
         }, currentYear, currentMoth, currentDay)
@@ -115,7 +116,7 @@ class PathFragment : Fragment() {
             datePicker.show()
         }
 
-        binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+        binding.chipGroup.setOnCheckedStateChangeListener { group, _ ->
             difficulty = getDifficulty(group.checkedChipId)
         }
 

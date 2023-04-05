@@ -12,4 +12,6 @@
     <color name="white_primary">#E8F9FD</color>
     <color name="green_primary">#59CE8F</color>
     <color name="yellow_primary">#FFFF00</color>
+    <color name="gray_primary">#333533</color>
+    <color name="gray_secondary">#d6d6d6</color>
 </resources>

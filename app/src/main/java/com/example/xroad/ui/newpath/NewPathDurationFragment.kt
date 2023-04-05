@@ -1,7 +1,5 @@
 package com.example.xroad.ui.newpath
 
-import android.app.TimePickerDialog
-import android.icu.text.DateFormat
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -32,24 +30,19 @@ class NewPathDurationFragment : Fragment() {
         _binding = FragmentNewPathDurationBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.duration.setIs24HourView(true)
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.duration.collect {
-                    binding.duration.text = durationInMillisecondsToString(it)
+                    binding.duration.hour = getHours(it)
+                    binding.duration.minute = getMinutes(it)
                 }
             }
         }
 
-        val currentTime = Calendar.getInstance()
-        val currentHour = currentTime.get(Calendar.HOUR_OF_DAY)
-        val currentMinute = currentTime.get(Calendar.MINUTE)
-        val timePicker = TimePickerDialog(requireContext(), { _, hourOfDay, minute ->
-            val durationInMillis = convertTimeToLong(hourOfDay, minute)
-            viewModel.setDurationValue(durationInMillis)
-        }, currentHour, currentMinute, true)
-
-        binding.duration.setOnClickListener {
-            timePicker.show()
+        binding.duration.setOnTimeChangedListener { _, hours, minutes ->
+            viewModel.setDurationValue(convertTimeToLong(hours, minutes))
         }
 
         binding.nextButton.setOnClickListener {
@@ -95,7 +88,17 @@ class NewPathDurationFragment : Fragment() {
         return calendar.timeInMillis
     }
 
-    private fun durationInMillisecondsToString(duration: Long): String {
-        return DateFormat.getPatternInstance(DateFormat.HOUR24_MINUTE).format(duration)
+    private fun getHours(duration: Long): Int {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = duration
+
+        return calendar.get(Calendar.HOUR_OF_DAY)
+    }
+
+    private fun getMinutes(duration: Long): Int {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = duration
+
+        return calendar.get(Calendar.MINUTE)
     }
 }

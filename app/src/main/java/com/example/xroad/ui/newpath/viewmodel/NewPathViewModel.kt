@@ -8,7 +8,10 @@ import com.example.model.model.Difficulty
 import com.example.model.model.Path
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.util.Calendar
 import javax.inject.Inject
@@ -17,24 +20,62 @@ import javax.inject.Inject
 class NewPathViewModel @Inject constructor(
     @SimplePathRep private val pathRepository: PathRepository
 ) : ViewModel() {
-    private var _title = MutableStateFlow("")
+    private val currentDate = Calendar.getInstance()
+    private val currentHour = currentDate.get(Calendar.HOUR_OF_DAY)
+    private val currentMinute = currentDate.get(Calendar.MINUTE)
+    private val currentDay = currentDate.get(Calendar.DAY_OF_MONTH)
+    private val currentMonth = currentDate.get(Calendar.MONTH)
+    private val currentYear = currentDate.get(Calendar.YEAR)
+
+    val _hour = MutableStateFlow(currentHour)
+    val _minute = MutableStateFlow(currentMinute)
+    val _day = MutableStateFlow(currentDay)
+    val _month = MutableStateFlow(currentMonth)
+    val _year = MutableStateFlow(currentYear)
+
+    val duration = combine(_hour, _minute) { hour, minute ->
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+
+        calendar.timeInMillis
+    }
+        .stateIn(
+            scope = viewModelScope,
+            initialValue = 0L,
+            started = WhileSubscribed(5_000)
+        )
+
+    val date = combine(_day, _month, _year) { day, month, year ->
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.DAY_OF_MONTH, day)
+        calendar.set(Calendar.MONTH, month)
+        calendar.set(Calendar.YEAR, year)
+
+        calendar.timeInMillis
+    }
+        .stateIn(
+            scope = viewModelScope,
+            initialValue = 0L,
+            started = WhileSubscribed(5_000)
+        )
+
+    val _title = MutableStateFlow("")
     val title = _title.asStateFlow()
 
-    private var _topic = MutableStateFlow("")
+    val _topic = MutableStateFlow("")
     val topic = _topic.asStateFlow()
 
-    private var _description = MutableStateFlow("")
+    val _description = MutableStateFlow("")
     val description = _description.asStateFlow()
 
-    private val currentDate = Calendar.getInstance()
+    val _veryEasy = MutableStateFlow(false)
+    val _easy = MutableStateFlow(false)
+    val _normal = MutableStateFlow(true)
+    val _hard = MutableStateFlow(false)
+    val _veryHard = MutableStateFlow(false)
 
-    private var _duration = MutableStateFlow(currentDate.timeInMillis)
-    val duration = _duration.asStateFlow()
-
-    private var _date = MutableStateFlow(currentDate.timeInMillis)
-    val date = _date.asStateFlow()
-
-    private var _difficulty = MutableStateFlow(Difficulty.NORMAL)
+    private val _difficulty = MutableStateFlow(Difficulty.NORMAL)
     val difficulty = _difficulty.asStateFlow()
 
     fun insertPath(path: Path) {
@@ -43,37 +84,12 @@ class NewPathViewModel @Inject constructor(
         }
     }
 
-    fun setTitleValue(title: String) {
-        _title.value = title
-    }
-
-    fun setTopicValue(topic: String) {
-        _topic.value = topic
-    }
-
-    fun setDescription(description: String) {
-        _description.value = description
-    }
-
-    fun setDurationValue(duration: Long) {
-        _duration.value = duration
-    }
-
-    fun setDateValue(date: Long) {
-        _date.value = date
-    }
-
-    fun setDifficulty(difficulty: Difficulty) {
-        _difficulty.value = difficulty
-    }
-
     fun restorePathValues() {
-        _title.value = ""
-        _topic.value = ""
-        _description.value = ""
-        _duration.value = currentDate.timeInMillis
-        _date.value = currentDate.timeInMillis
-        _difficulty.value = Difficulty.NORMAL
+        restoreTitleAndTopicValue()
+        restoreDescriptionValue()
+        restoreDurationValue()
+        restoreDateValue()
+        restoreDifficultyValue()
     }
 
     fun restoreTitleAndTopicValue() {
@@ -86,14 +102,17 @@ class NewPathViewModel @Inject constructor(
     }
 
     fun restoreDurationValue() {
-        _duration.value = currentDate.timeInMillis
+        _minute.value = currentMinute
+        _hour.value = currentHour
     }
 
     fun restoreDateValue() {
-        _date.value = currentDate.timeInMillis
+        _day.value = currentDay
+        _month.value = currentMonth
+        _year.value = currentYear
     }
 
     fun restoreDifficultyValue() {
-        _difficulty.value = Difficulty.NORMAL
+        _normal.value = true
     }
 }

@@ -7,15 +7,11 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathDateBinding
 import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import java.util.Calendar
 
 @AndroidEntryPoint
 class NewPathDateFragment : Fragment() {
@@ -30,30 +26,9 @@ class NewPathDateFragment : Fragment() {
         _binding = FragmentNewPathDateBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.date.collect {
-                    binding.calendarView.date = it
-                }
-            }
-        }
-
-        binding.calendarView.setOnDateChangeListener { _, year, month, day ->
-            val newDate = Calendar.getInstance()
-            newDate.set(Calendar.YEAR, year)
-            newDate.set(Calendar.MONTH, month)
-            newDate.set(Calendar.DAY_OF_MONTH, day)
-
-            viewModel.setDateValue(newDate.timeInMillis)
-        }
-
-        binding.nextButton.setOnClickListener {
-            val date = binding.calendarView.date
-            viewModel.setDateValue(date)
-
-            findNavController().navigate(
-                NewPathDateFragmentDirections.actionDateToDifficulty())
-        }
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+        binding.uiEvents = this
 
         return view
     }
@@ -83,5 +58,10 @@ class NewPathDateFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun navigateToDifficulty() {
+        findNavController().navigate(
+            NewPathDateFragmentDirections.actionDateToDifficulty())
     }
 }

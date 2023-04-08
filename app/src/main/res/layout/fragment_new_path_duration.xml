@@ -17,23 +17,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.newpath.NewPathDurationFragment">
+
         <TimePicker
             android:id="@+id/duration"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="32dp"
             android:background="?colorSecondaryVariant"
             android:elevation="4dp"
             android:hint="@string/duration_label"
-            android:textSize="22sp"
-            android:minute="@={viewModel._minute}"
             android:hour="@={viewModel._hour}"
-            android:onTimeChanged="@{(_, hour, minute) -> viewModel.convertTimeToLong(hour, minute)}"
+            android:minute="@={viewModel._minute}"
+            android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@+id/next_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -50,18 +50,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/test_edit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="140dp"
-            android:text="@={``+viewModel._hour}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/next_button"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

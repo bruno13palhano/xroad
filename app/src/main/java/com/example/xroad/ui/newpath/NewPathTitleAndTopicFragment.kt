@@ -5,16 +5,14 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathTitleAndTopicBinding
 import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NewPathTitleAndTopicFragment : Fragment() {
@@ -26,43 +24,13 @@ class NewPathTitleAndTopicFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNewPathTitleAndTopicBinding
-            .inflate(inflater, container, false)
+        _binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_new_path_title_and_topic, container, false)
         val view = binding.root
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.title.collect {
-                        binding.title.setText(it)
-                    }
-                }
-                launch {
-                    viewModel.topic.collect {
-                        binding.topic.setText(it)
-                    }
-                }
-            }
-        }
-
-        binding.title.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                val title = binding.title.text.toString()
-                viewModel.setTitleValue(title)
-            }
-        }
-
-        binding.topic.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                val topic = binding.topic.text.toString()
-                viewModel.setTopicValue(topic)
-            }
-        }
-
-        binding.nextButton.setOnClickListener {
-            findNavController().navigate(
-                NewPathTitleAndTopicFragmentDirections.actionTitleAndTopicToDescription())
-        }
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.uiEvents = this
 
         return view
     }
@@ -80,7 +48,7 @@ class NewPathTitleAndTopicFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.restore_values -> {
-                        restoreTitleAndTopicValues()
+                        viewModel.restoreTitleAndTopicValue()
                         true
                     }
                     else -> false
@@ -94,9 +62,8 @@ class NewPathTitleAndTopicFragment : Fragment() {
         _binding = null
     }
 
-    private fun restoreTitleAndTopicValues() {
-        binding.title.setText("")
-        binding.topic.setText("")
-        viewModel.restoreTitleAndTopicValue()
+    fun navigateToDescription() {
+        findNavController().navigate(
+            NewPathTitleAndTopicFragmentDirections.actionTitleAndTopicToDescription())
     }
 }

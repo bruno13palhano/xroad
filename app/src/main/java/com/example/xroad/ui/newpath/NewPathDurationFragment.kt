@@ -29,6 +29,7 @@ class NewPathDurationFragment : Fragment() {
         val view = binding.root
 
         binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.uiEvents = this
         binding.duration.setIs24HourView(true)
 
@@ -48,7 +49,7 @@ class NewPathDurationFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.restore_values -> {
-                        restoreDurationValues()
+                        viewModel.restoreDurationValue()
                         true
                     }
                     else -> false
@@ -65,11 +66,5 @@ class NewPathDurationFragment : Fragment() {
     fun navigateToDate() {
         findNavController().navigate(
             NewPathDurationFragmentDirections.actionDurationToDate())
-    }
-
-    private fun restoreDurationValues() {
-        viewModel.restoreDurationValue()
-        binding.duration.hour = viewModel.currentHour
-        binding.duration.minute = viewModel.currentMinute
     }
 }

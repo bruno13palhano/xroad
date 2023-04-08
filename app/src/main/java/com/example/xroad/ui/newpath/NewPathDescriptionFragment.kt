@@ -5,16 +5,14 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathDescriptionBinding
 import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NewPathDescriptionFragment : Fragment() {
@@ -26,32 +24,13 @@ class NewPathDescriptionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNewPathDescriptionBinding
-            .inflate(inflater, container, false)
+        _binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_new_path_description, container, false)
         val view = binding.root
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.description.collect {
-                    binding.description.setText(it)
-                }
-            }
-        }
-
-        binding.description.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                val description = binding.description.text.toString()
-                viewModel.setDescription(description)
-            }
-        }
-
-        binding.nextButton.setOnClickListener {
-            val description = binding.description.text.toString()
-            viewModel.setDescription(description)
-
-            findNavController().navigate(
-                NewPathDescriptionFragmentDirections.actionDescriptionToDuration())
-        }
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.uiEvents = this
 
         return view
     }
@@ -69,7 +48,7 @@ class NewPathDescriptionFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.restore_values -> {
-                        restoreDescriptionValue()
+                        viewModel.restoreDescriptionValue()
                         true
                     }
                     else -> false
@@ -83,8 +62,8 @@ class NewPathDescriptionFragment : Fragment() {
         _binding = null
     }
 
-    private fun restoreDescriptionValue() {
-        binding.description.setText("")
-        viewModel.restoreDescriptionValue()
+    fun navigateToDuration() {
+        findNavController().navigate(
+            NewPathDescriptionFragmentDirections.actionDescriptionToDuration())
     }
 }

@@ -3,7 +3,6 @@ package com.example.xroad.ui.newpath
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.RadioGroup
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
@@ -24,6 +23,13 @@ class NewPathDifficultyFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: NewPathViewModel by activityViewModels()
 
+    private var title = ""
+    private var topic = ""
+    private var description = ""
+    private var duration = 0L
+    private var date = 0L
+    private var difficulty = Difficulty.NORMAL
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,12 +37,9 @@ class NewPathDifficultyFragment : Fragment() {
         _binding = FragmentNewPathDifficultyBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        var title = ""
-        var topic = ""
-        var description = ""
-        var duration = 0L
-        var date = 0L
-        var difficulty = Difficulty.NORMAL
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.uiEvents = this
+        binding.viewModel = viewModel
 
         viewLifecycleOwner.lifecycleScope.launch {
             launch {
@@ -64,36 +67,6 @@ class NewPathDifficultyFragment : Fragment() {
                     date = it
                 }
             }
-            launch {
-                viewModel.difficulty.collect {
-                    difficulty = it
-                    checkDifficultyRadioButton(it)
-                }
-            }
-        }
-
-        binding.difficultyGroup.setOnCheckedChangeListener { radioGroup, _ ->
-           setDifficulty(radioGroup)
-        }
-
-        binding.doneButton.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.insertPath(
-                    Path(
-                        id = 0L,
-                        title = title,
-                        topic = topic,
-                        description = description,
-                        durationInMilliseconds = duration,
-                        dateInMilliseconds = date,
-                        difficulty = difficulty
-                    )
-                )
-                viewModel.restorePathValues()
-            }
-
-            findNavController().navigate(
-                NewPathDifficultyFragmentDirections.actionDifficultyToTitleAndTopic())
         }
 
         return view
@@ -126,43 +99,27 @@ class NewPathDifficultyFragment : Fragment() {
         _binding = null
     }
 
-    private fun checkDifficultyRadioButton(difficulty: Difficulty) {
-        when (difficulty) {
-            Difficulty.VERY_EASY -> {
-                binding.veryEasyDifficulty.isChecked = true
+    fun insertPath() {
+        navigateToTitleAndTopic()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.insertPath(
+                    Path(
+                        id = 0L,
+                        title = title,
+                        topic = topic,
+                        description = description,
+                        durationInMilliseconds = duration,
+                        dateInMilliseconds = date,
+                        difficulty = difficulty
+                    )
+                )
+                viewModel.restorePathValues()
             }
-            Difficulty.EASY -> {
-                binding.easyDifficulty.isChecked = true
-            }
-            Difficulty.NORMAL -> {
-                binding.normalDifficulty.isChecked = true
-            }
-            Difficulty.HARD -> {
-                binding.hardDifficulty.isChecked = true
-            }
-            Difficulty.VERY_HARD -> {
-                binding.veryHardDifficulty.isChecked = true
-            }
-        }
     }
 
-    private fun setDifficulty(radioGroup: RadioGroup) {
-        when (radioGroup.checkedRadioButtonId) {
-            binding.veryEasyDifficulty.id -> {
-                viewModel.setDifficulty(Difficulty.VERY_EASY)
-            }
-            binding.easyDifficulty.id -> {
-                viewModel.setDifficulty(Difficulty.EASY)
-            }
-            binding.normalDifficulty.id -> {
-                viewModel.setDifficulty(Difficulty.NORMAL)
-            }
-            binding.hardDifficulty.id -> {
-                viewModel.setDifficulty(Difficulty.HARD)
-            }
-            binding.veryHardDifficulty.id -> {
-                viewModel.setDifficulty(Difficulty.VERY_HARD)
-            }
-        }
+    private fun navigateToTitleAndTopic() {
+        findNavController().navigate(
+                NewPathDifficultyFragmentDirections.actionDifficultyToTitleAndTopic())
     }
 }

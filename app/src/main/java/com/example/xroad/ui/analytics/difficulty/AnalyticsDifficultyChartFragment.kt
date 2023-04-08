@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -28,7 +29,8 @@ class AnalyticsDifficultyChartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAnalyticsDifficultyChartBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_analytics_difficulty_chart, container, false)
         val view = binding.root
 
         viewLifecycleOwner.lifecycleScope.launch {

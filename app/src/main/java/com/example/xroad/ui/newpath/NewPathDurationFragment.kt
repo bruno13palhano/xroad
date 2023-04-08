@@ -5,17 +5,14 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathDurationBinding
 import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
 class NewPathDurationFragment : Fragment() {
@@ -27,28 +24,13 @@ class NewPathDurationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNewPathDurationBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_new_path_duration, container, false)
         val view = binding.root
 
+        binding.viewModel = viewModel
+        binding.uiEvents = this
         binding.duration.setIs24HourView(true)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.duration.collect {
-                    binding.duration.hour = getHours(it)
-                    binding.duration.minute = getMinutes(it)
-                }
-            }
-        }
-
-        binding.duration.setOnTimeChangedListener { _, hours, minutes ->
-            viewModel.setDurationValue(convertTimeToLong(hours, minutes))
-        }
-
-        binding.nextButton.setOnClickListener {
-            findNavController().navigate(
-                NewPathDurationFragmentDirections.actionDurationToDate())
-        }
 
         return view
     }
@@ -66,7 +48,7 @@ class NewPathDurationFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.restore_values -> {
-                        viewModel.restoreDurationValue()
+                        restoreDurationValues()
                         true
                     }
                     else -> false
@@ -80,25 +62,14 @@ class NewPathDurationFragment : Fragment() {
         _binding = null
     }
 
-    private fun convertTimeToLong(hour: Int, minute: Int): Long {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, hour)
-        calendar.set(Calendar.MINUTE, minute)
-
-        return calendar.timeInMillis
+    fun navigateToDate() {
+        findNavController().navigate(
+            NewPathDurationFragmentDirections.actionDurationToDate())
     }
 
-    private fun getHours(duration: Long): Int {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = duration
-
-        return calendar.get(Calendar.HOUR_OF_DAY)
-    }
-
-    private fun getMinutes(duration: Long): Int {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = duration
-
-        return calendar.get(Calendar.MINUTE)
+    private fun restoreDurationValues() {
+        viewModel.restoreDurationValue()
+        binding.duration.hour = viewModel.currentHour
+        binding.duration.minute = viewModel.currentMinute
     }
 }

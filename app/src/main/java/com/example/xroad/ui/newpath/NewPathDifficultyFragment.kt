@@ -67,6 +67,11 @@ class NewPathDifficultyFragment : Fragment() {
                     date = it
                 }
             }
+            launch {
+                viewModel.difficulty.collect {
+                    difficulty = it
+                }
+            }
         }
 
         return view

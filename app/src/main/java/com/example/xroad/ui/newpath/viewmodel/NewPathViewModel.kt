@@ -75,8 +75,28 @@ class NewPathViewModel @Inject constructor(
     val _hard = MutableStateFlow(false)
     val _veryHard = MutableStateFlow(false)
 
-    private val _difficulty = MutableStateFlow(Difficulty.NORMAL)
-    val difficulty = _difficulty.asStateFlow()
+    val difficulty = combine(
+        _veryEasy,
+        _easy,
+        _normal,
+        _hard,
+        _veryHard
+    ) { veryEasy, easy, normal, hard, veryHard ->
+        var difficulty = Difficulty.NORMAL
+        if (veryEasy) {
+            difficulty = Difficulty.VERY_EASY
+        } else if(easy) {
+            difficulty = Difficulty.EASY
+        } else if (normal) {
+            difficulty = Difficulty.NORMAL
+        } else if (hard) {
+            difficulty = Difficulty.HARD
+        } else if (veryHard) {
+            difficulty = Difficulty.VERY_HARD
+        }
+
+        difficulty
+    }
 
     fun insertPath(path: Path) {
         viewModelScope.launch {

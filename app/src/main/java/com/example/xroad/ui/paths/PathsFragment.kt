@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -25,7 +26,8 @@ class PathsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPathsBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_paths, container, false)
         val view = binding.root
 
         val adapter = PathsAdapter {

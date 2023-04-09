@@ -14,4 +14,5 @@ The main concept is the Road, which is compost with the paths.
 * Handle app state changes with ViewModel;
 * AAChartModel for data visualization;
 * Flow and coroutines;
+* DataBinding;
 * Modularization.

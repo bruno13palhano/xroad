@@ -47,6 +47,6 @@ class HomeFragment : Fragment() {
     }
 
     fun navigateToNewPath() {
-        findNavController().navigate(HomeFragmentDirections.actionHomeToNewPath())
+
     }
 }

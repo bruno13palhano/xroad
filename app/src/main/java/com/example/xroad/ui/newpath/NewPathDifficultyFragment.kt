@@ -125,6 +125,6 @@ class NewPathDifficultyFragment : Fragment() {
 
     private fun navigateToTitleAndTopic() {
         findNavController().navigate(
-                NewPathDifficultyFragmentDirections.actionDifficultyToTitleAndTopic())
+                NewPathDifficultyFragmentDirections.actionDifficultyToPaths())
     }
 }

@@ -14,6 +14,10 @@
         <action
             android:id="@+id/action_paths_to_path"
             app:destination="@id/pathFragment" />
+
+        <action
+            android:id="@+id/action_paths_to_titleAndTopic"
+            app:destination="@id/newPathTitleAndTopicFragment" />
     </fragment>
 
     <fragment
@@ -25,5 +29,62 @@
         <argument
             android:name="pathId"
             app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathTitleAndTopicFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathTitleAndTopicFragment"
+        android:label="@string/title_and_topic_label"
+        tools:layout="@layout/fragment_new_path_title_and_topic">
+
+        <action
+            android:id="@+id/action_titleAndTopic_to_Description"
+            app:destination="@id/newPathDescriptionFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathDescriptionFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathDescriptionFragment"
+        android:label="@string/description_label"
+        tools:layout="@layout/fragment_new_path_description">
+
+        <action
+            android:id="@+id/action_description_to_duration"
+            app:destination="@id/newPathDurationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathDurationFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathDurationFragment"
+        android:label="@string/duration_label"
+        tools:layout="@layout/fragment_new_path_duration">
+
+        <action
+            android:id="@+id/action_duration_to_date"
+            app:destination="@id/newPathDateFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathDateFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathDateFragment"
+        android:label="@string/date_label"
+        tools:layout="@layout/fragment_new_path_date">
+
+        <action
+            android:id="@+id/action_date_to_difficulty"
+            app:destination="@id/newPathDifficultyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPathDifficultyFragment"
+        android:name="com.example.xroad.ui.newpath.NewPathDifficultyFragment"
+        android:label="@string/difficulty_label"
+        tools:layout="@layout/fragment_new_path_difficulty">
+
+        <action
+            android:id="@+id/action_difficulty_to_paths"
+            app:destination="@id/pathsFragment"
+            app:popUpTo="@id/pathsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

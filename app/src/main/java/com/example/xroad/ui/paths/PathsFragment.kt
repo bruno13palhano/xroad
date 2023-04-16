@@ -30,6 +30,8 @@ class PathsFragment : Fragment() {
             .inflate(inflater, R.layout.fragment_paths, container, false)
         val view = binding.root
 
+        binding.uiEvents = this
+
         val adapter = PathsAdapter {
             findNavController().navigate(
                 PathsFragmentDirections.actionPathsToPath(it))
@@ -66,5 +68,10 @@ class PathsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun navigateToAddNewPath() {
+        findNavController().navigate(
+            PathsFragmentDirections.actionPathsToTitleAndTopic())
     }
 }

@@ -28,34 +28,10 @@
                 android:textSize="22sp"
                 android:padding="8dp"
                 android:layout_margin="8dp"
-                android:text="@string/month_chart_label"
-                android:onClick="@{v -> uiEvents.navigateToMonth()}"
+                android:text="@string/path_charts_label"
+                android:onClick="@{v -> uiEvents.navigateToPathCharts()}"
                 app:drawableStartCompat="@drawable/baseline_calendar_month_24"
                 android:drawablePadding="8dp" />
         </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/analytics_week_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:text="@string/week_chart_label"
-            android:onClick="@{v -> uiEvents.navigateToWeek()}"
-            app:drawableStartCompat="@drawable/baseline_calendar_view_week_24"
-            android:drawablePadding="8dp" />
-
-        <TextView
-            android:id="@+id/analytics_difficult_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:text="@string/difficulty_chart_label"
-            android:onClick="@{v -> uiEvents.navigateToDifficulty()}"
-            app:drawableStartCompat="@drawable/baseline_scale_24"
-            android:drawablePadding="8dp"/>
     </LinearLayout>
 </layout>

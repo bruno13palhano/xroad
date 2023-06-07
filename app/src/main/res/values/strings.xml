@@ -103,4 +103,5 @@
     <string name="hours_day_week_label">Hours/Day of Week</string>
     <string name="hours_month_label">Hours/Month</string>
     <string name="hours_difficulty_label">Hours/Difficulty</string>
+    <string name="path_charts_label">Path Charts</string>
 </resources>

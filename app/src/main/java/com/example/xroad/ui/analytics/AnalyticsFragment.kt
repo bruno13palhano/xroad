@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.example.xroad.MainActivity
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentAnalyticsBinding
 
@@ -21,6 +22,8 @@ class AnalyticsFragment : Fragment() {
         _binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_analytics, container, false)
         val view = binding.root
+
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.analytics_label)
 
         binding.uiEvents = this
 

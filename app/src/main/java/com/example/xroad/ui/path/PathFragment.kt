@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.model.model.Difficulty
+import com.example.xroad.MainActivity
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentPathBinding
 import com.example.xroad.ui.path.viewmodel.PathViewModel
@@ -37,6 +38,8 @@ class PathFragment : Fragment() {
         _binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_path, container, false)
         val view = binding.root
+
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.path_label)
 
         pathId = PathFragmentArgs.fromBundle(requireArguments()).pathId
         viewModel.getPath(pathId)

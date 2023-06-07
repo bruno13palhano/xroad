@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.xroad.MainActivity
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentAnalyticsWeekChartBinding
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -33,6 +34,8 @@ class AnalyticsWeekChartFragment : Fragment() {
         _binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_analytics_week_chart, container, false)
         val view = binding.root
+
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.week_chart_label)
 
         val chartModel: AAChartModel = AAChartModel()
             .chartType(AAChartType.Column)

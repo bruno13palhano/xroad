@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import com.example.xroad.MainActivity
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentNewPathTitleAndTopicBinding
 import com.example.xroad.ui.newpath.viewmodel.NewPathViewModel
@@ -27,6 +28,8 @@ class NewPathTitleAndTopicFragment : Fragment() {
         _binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_new_path_title_and_topic, container, false)
         val view = binding.root
+
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.title_and_topic_label)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner

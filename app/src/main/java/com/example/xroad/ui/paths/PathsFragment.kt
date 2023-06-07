@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.example.xroad.MainActivity
 import com.example.xroad.R
 import com.example.xroad.databinding.FragmentPathsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,8 @@ class PathsFragment : Fragment() {
         _binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_paths, container, false)
         val view = binding.root
+
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.paths_label)
 
         binding.uiEvents = this
 

@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.menu_toolbar, menu)
+
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

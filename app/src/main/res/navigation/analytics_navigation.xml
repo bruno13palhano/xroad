@@ -11,34 +11,13 @@
         android:label="@string/analytics_label"
         tools:layout="@layout/fragment_analytics">
 
-        <action
-            android:id="@+id/action_analytics_to_month_chart"
-            app:destination="@id/analyticsChartFragment" />
-
-        <action
-            android:id="@+id/action_analytics_to_week_chart"
-            app:destination="@id/analyticsWeekChartFragment" />
-
-        <action
-            android:id="@+id/action_analytics_to_difficulty_chart"
-            app:destination="@id/analyticsDifficultyChartFragment" />
+        <action android:id="@+id/action_analytics_to_pathCharts"
+            app:destination="@+id/pathChartsFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/analyticsChartFragment"
-        android:name="com.example.xroad.ui.analytics.month.AnalyticsMonthChartFragment"
-        android:label="@string/analytics_chart_label"
-        tools:layout="@layout/fragment_analytics_month_chart" />
-
-    <fragment
-        android:id="@+id/analyticsWeekChartFragment"
-        android:name="com.example.xroad.ui.analytics.week.AnalyticsWeekChartFragment"
-        android:label="@string/week_chart_label"
-        tools:layout="@layout/fragment_analytics_week_chart" />
-
-    <fragment
-        android:id="@+id/analyticsDifficultyChartFragment"
-        android:name="com.example.xroad.ui.analytics.difficulty.AnalyticsDifficultyChartFragment"
-        android:label="@string/difficulty_chart_label"
-        tools:layout="@layout/fragment_analytics_difficulty_chart" />
+        android:id="@+id/pathChartsFragment"
+        android:name="com.example.xroad.ui.analytics.nap.PathChartsFragment"
+        tools:label="@string/path_charts_label"
+        tools:layout="@layout/fragment_path_charts" />
 </navigation>

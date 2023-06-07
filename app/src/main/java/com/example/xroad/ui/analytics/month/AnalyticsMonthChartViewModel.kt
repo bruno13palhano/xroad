@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AnalyticsMonthChartViewModel @Inject constructor(
-    @SimplePathRep pathRepository: PathRepository
+    @SimplePathRep private val pathRepository: PathRepository
 ) : ViewModel() {
 
     val uiState = pathRepository.getAllStream()

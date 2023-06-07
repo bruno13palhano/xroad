@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AnalyticsDifficultyChartViewModel @Inject constructor(
-    @SimplePathRep pathRepository: PathRepository
+    @SimplePathRep private val pathRepository: PathRepository
 ) : ViewModel() {
 
     val uiState = pathRepository.getAllStream()

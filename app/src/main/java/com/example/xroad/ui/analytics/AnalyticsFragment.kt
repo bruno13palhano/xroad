@@ -35,18 +35,8 @@ class AnalyticsFragment : Fragment() {
         _binding = null
     }
 
-    fun navigateToMonth() {
+    fun navigateToPathCharts() {
         findNavController().navigate(
-            AnalyticsFragmentDirections.actionAnalyticsToMonthChart())
-    }
-
-    fun navigateToWeek() {
-        findNavController().navigate(
-            AnalyticsFragmentDirections.actionAnalyticsToWeekChart())
-    }
-
-    fun navigateToDifficulty() {
-        findNavController().navigate(
-            AnalyticsFragmentDirections.actionAnalyticsToDifficultyChart())
+            AnalyticsFragmentDirections.actionAnalyticsToPathCharts())
     }
 }

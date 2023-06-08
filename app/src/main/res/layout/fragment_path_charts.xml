@@ -10,6 +10,7 @@
         <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
             android:id="@+id/path_charts"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_margin="8dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

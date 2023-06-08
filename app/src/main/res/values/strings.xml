@@ -90,6 +90,9 @@
     <string name="gray_primary">#333533</string>
     <string name="white">#FFFFFF</string>
 
+    <!--  Chart colors  -->
+    <string name="chart_background_color">#F6F6F6</string>
+
     <!--  Chart labels  -->
     <string name="paths_expertise_label">All paths to Expertise</string>
     <string name="hours_label">Hours</string>
